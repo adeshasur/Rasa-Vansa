@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Shop premium Sri Lankan spices at RasaVansa - Ceylon Turmeric, Red Chili, Black Pepper and more."/>
+  <title>Shop | RasaVansa - The Spice Market</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <canvas id="particle-canvas"></canvas>
+
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo"><span class="logo-icon">🌶️</span><span class="logo-text">RasaVansa</span></a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="shop.html" class="nav-link active">Shop</a></li>
+        <li><a href="story.html" class="nav-link">Our Story</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="cart-btn" id="cart-btn" aria-label="View Cart">🛒 <span class="cart-count" id="cart-count">0</span></button>
+        <button class="hamburger" id="hamburger" aria-label="Open Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="container">
+      <p class="section-eyebrow">Premium Selection</p>
+      <h1>The Spice Market 🌶️</h1>
+      <p>Hand-picked, sun-dried, and packed with pure Ceylon goodness.</p>
+    </div>
+  </div>
+
+  <!-- SHOP LAYOUT -->
+  <section class="shop-layout">
+    <div class="container">
+      <!-- FILTERS -->
+      <div class="shop-filters">
+        <span class="filter-label">Filter by:</span>
+        <button class="filter-btn active" data-filter="all" id="filter-all">All</button>
+        <button class="filter-btn" data-filter="turmeric" id="filter-turmeric">🟡 Turmeric</button>
+        <button class="filter-btn" data-filter="chili" id="filter-chili">🌶️ Chili</button>
+        <button class="filter-btn" data-filter="pepper" id="filter-pepper">⚫ Pepper</button>
+        <button class="filter-btn" data-filter="bundle" id="filter-bundle">📦 Bundles</button>
+        <button class="filter-btn" data-filter="mild" id="filter-mild">🟢 Mild Heat</button>
+        <button class="filter-btn" data-filter="hot" id="filter-hot">🔥 Hot</button>
+      </div>
+
+      <!-- PRODUCTS GRID -->
+      <div class="products-grid">
+
+        <!-- Product 1 -->
+        <div class="product-card" data-category="turmeric" data-heat="mild" data-name="Ceylon Turmeric Gold" data-price="290">
+          <div class="card-badge">Best Seller</div>
+          <div class="product-img">
+            <div class="product-visual turmeric-visual"></div>
+          </div>
+          <div class="product-body">
+            <h3>Ceylon Turmeric Gold</h3>
+            <p>High-curcumin, sun-dried, hand-ground. Perfect for rice, curries and health drinks.</p>
+            <div class="product-heat">
+              <div class="heat-pip active"></div>
+              <div class="heat-pip"></div>
+              <div class="heat-pip"></div>
+              <div class="heat-pip"></div>
+              <div class="heat-pip"></div>
+            </div>
+          </div>
+          <div class="product-footer">
+            <div class="price-block"><span class="price">Rs. 290</span><span class="weight">/ 100g</span></div>
+            <button class="btn btn-primary add-to-cart" data-name="Ceylon Turmeric Gold" data-price="290">Add 🛒</button>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card" data-category="chili" data-heat="hot" data-name="Red Devil Chili" data-price="320">
+          <div class="card-badge spicy-badge">🔥 Hot</div>
+          <div class="product-img">
+            <div class="product-visual chili-visual"></div>
+          </div>
+          <div class="product-body">
+            <h3>Red Devil Chili</h3>
+            <p>Sun-roasted Sri Lankan red chili powder. Intense heat and deep colour for authentic dishes.</p>
+            <div class="product-heat">
+              <div class="heat-pip active"></div>
+              <div class="heat-pip active"></div>
+              <div class="heat-pip active"></div>
+              <div class="heat-pip active"></div>
+              <div class="heat-pip"></div>
+            </div>
+          </div>
+          <div class="product-footer">
+            <div class="price-block"><span class="price">Rs. 320</span><span class="weight">/ 100g</span></div>
+            <button class="btn btn-primary add-to-cart" data-name="Red Devil Chili" data-price="320">Add 🛒</button>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card" data-category="pepper" data-heat="mild" data-name="Ceylon Black Pepper" data-price="450">
+          <div class="card-badge organic-badge">🌿 Organic</div>
+          <div class="product-img">
+            <div class="product-visual pepper-visual"></div>
+          </div>
+          <div class="product-body">
+            <h3>Ceylon Black Pepper</h3>
+            <p>Bold, aromatic whole peppercorns from Matale highlands. Freshly grind for best results.</p>
+            <div class="product-heat">
+              <div class="heat-pip active"></div>
+              <div class="heat-pip active"></div>
+              <div class="heat-pip"></div>
+              <div class="heat-pip"></div>
+              <div class="heat-pip"></div>
+            </div>
+          </div>
+          <div class="product-footer">
+            <div class="price-block"><span class="price">Rs. 450</span><span class="weight">/ 100g</span></div>
+            <button class="btn btn-primary add-to-cart" data-name="Ceylon Black Pepper" data-price="450">Add 🛒</button>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card" data-category="chili" data-heat="hot" data-name="Ghost Pepper Extreme" data-price="580">
+          <div class="card-badge spicy-badge">💥 Extreme</div>
+          <div class="product-img" style="background:radial-gradient(circle,#1a0005,#5a0010)">
+            <div class="product-visual" style="background:radial-gradient(circle at 40% 40%,#8b0000,#3d0000);">
+              <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:3.5rem;filter:drop-shadow(0 4px 12px rgba(0,0,0,.4))">🌶️</span>
+            </div>
+          </div>
+          <div class="product-body">
+            <h3>Ghost Pepper Extreme</h3>
+            <p>For daring spice lovers only. Bhut jolokia extract — use a tiny pinch!</p>
+            <div class="product-heat">
+              <div class="heat-pip active"></div>
+              <div class="heat-pip active"></div>
+              <div class="heat-pip active"></div>
+              <div class="heat-pip active"></div>
+              <div class="heat-pip active"></div>
+            </div>
+          </div>
+          <div class="product-footer">
+            <div class="price-block"><span class="price">Rs. 580</span><span class="weight">/ 50g</span></div>
+            <button class="btn btn-primary add-to-cart" data-name="Ghost Pepper Extreme" data-price="580">Add 🛒</button>
+          </div>
+        </div>
+
+        <!-- Product 5 - Bundle -->
+        <div class="product-card" data-category="bundle" data-heat="mild" data-name="Starter Trio Bundle" data-price="950">
+          <div class="card-badge" style="background:var(--saffron);color:var(--maroon-dark)">Save Rs. 110</div>
+          <div class="product-img">
+            <div style="font-size:4rem;display:flex;gap:0.3rem">🫙🌶️⚫</div>
+          </div>
+          <div class="product-body">
+            <h3>Starter Trio Bundle</h3>
+            <p>Get all 3 bestsellers — Turmeric, Chili & Pepper — at a special bundle price.</p>
+            <div class="product-heat">
+              <div class="heat-pip active"></div>
+              <div class="heat-pip active"></div>
+              <div class="heat-pip"></div>
+              <div class="heat-pip"></div>
+              <div class="heat-pip"></div>
+            </div>
+          </div>
+          <div class="product-footer">
+            <div class="price-block"><span class="price">Rs. 950</span><span class="weight">/ bundle</span></div>
+            <button class="btn btn-primary add-to-cart" data-name="Starter Trio Bundle" data-price="950">Add 🛒</button>
+          </div>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="product-card" data-category="turmeric" data-heat="mild" data-name="Golden Milk Mix" data-price="380">
+          <div class="card-badge organic-badge">🌿 Wellness</div>
+          <div class="product-img">
+            <div class="product-visual" style="background:radial-gradient(circle at 40% 40%,#ffe066,#d4a017,#8a6000);">
+              <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:3.5rem">☕</span>
+            </div>
+          </div>
+          <div class="product-body">
+            <h3>Golden Milk Mix</h3>
+            <p>Turmeric, ginger & cardamom blend for your daily wellness latte. Immunity powerhouse.</p>
+            <div class="product-heat">
+              <div class="heat-pip active"></div>
+              <div class="heat-pip"></div>
+              <div class="heat-pip"></div>
+              <div class="heat-pip"></div>
+              <div class="heat-pip"></div>
+            </div>
+          </div>
+          <div class="product-footer">
+            <div class="price-block"><span class="price">Rs. 380</span><span class="weight">/ 80g</span></div>
+            <button class="btn btn-primary add-to-cart" data-name="Golden Milk Mix" data-price="380">Add 🛒</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WhatsApp float -->
+  <a href="https://wa.me/94771234567" class="whatsapp-float" id="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp Order">💬</a>
+  <div class="cart-toast" id="cart-toast"></div>
+
+  <footer class="footer">
+    <div class="container" style="text-align:center;padding:2rem 0;">
+      <a href="index.html" class="logo" style="justify-content:center;margin-bottom:1rem"><span class="logo-icon">🌶️</span><span class="logo-text">RasaVansa</span></a>
+      <p style="color:rgba(255,255,255,0.4);font-size:0.85rem">© 2026 RasaVansa. The Sri Lankan Spice Dynasty.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
