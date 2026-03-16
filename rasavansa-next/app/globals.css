@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+@theme {
+  --color-lion-maroon: oklch(45% 0.15 20);
+  --color-lion-maroon-d: oklch(35% 0.15 20);
+  --color-golden-saffron: oklch(85% 0.18 85);
+  --color-golden-saffron-l: oklch(90% 0.15 85);
+  --color-organic-teal: oklch(40% 0.12 170);
+  --color-surface-ivory: oklch(99% 0.01 80);
+  --color-surface-cream: oklch(96% 0.02 85);
+
+  --font-serif: var(--font-cormorant), serif;
+  --font-sans: var(--font-jakarta), system-ui, sans-serif;
+
+  --radius-r-sm: 8px;
+  --radius-r-md: 16px;
+  --radius-r-lg: 24px;
+  --radius-r-xl: 48px;
+
+  --shadow-sh-sm: 0 2px 8px oklch(45% 0.15 20 / 0.08);
+  --shadow-sh-md: 0 8px 32px oklch(45% 0.15 20 / 0.14);
+  --shadow-sh-lg: 0 24px 64px oklch(45% 0.15 20 / 0.20);
+}
+
+:root {
+  --background: var(--color-surface-ivory);
+  --foreground: oklch(25% 0.05 20);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Glassmorphism Utility */
+.glass {
+  background: oklch(100% 0 0 / 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px solid oklch(85% 0.18 85 / 0.2);
+}
+
+/* GSAP Smooth Scroll - Lenis */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
