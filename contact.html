@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Order RasaVansa premium Sri Lankan spices - Cash on delivery island-wide. Contact via WhatsApp or order form."/>
+  <meta name="description" content="Order RasaVansa premium Sri Lankan spices — Cash on delivery island-wide."/>
   <title>Contact & Order | RasaVansa</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
@@ -15,7 +16,10 @@
 
   <nav class="navbar scrolled" id="navbar">
     <div class="nav-container">
-      <a href="index.html" class="logo"><span class="logo-icon">🌶️</span><span class="logo-text">RasaVansa</span></a>
+      <a href="index.html" class="logo">
+        <div class="logo-mark"><i class="fa-solid fa-pepper-hot"></i></div>
+        <span class="logo-text">Rasa<strong>Vansa</strong></span>
+      </a>
       <ul class="nav-links" id="nav-links">
         <li><a href="index.html" class="nav-link">Home</a></li>
         <li><a href="shop.html" class="nav-link">Shop</a></li>
@@ -23,7 +27,11 @@
         <li><a href="contact.html" class="nav-link active">Contact</a></li>
       </ul>
       <div class="nav-actions">
-        <button class="cart-btn" id="cart-btn" aria-label="View Cart">🛒 <span class="cart-count" id="cart-count">0</span></button>
+        <a href="contact.html" class="btn btn-ghost nav-order-btn"><i class="fa-brands fa-whatsapp"></i> Order Now</a>
+        <button class="cart-btn" id="cart-btn" aria-label="View Cart">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-count" id="cart-count">0</span>
+        </button>
         <button class="hamburger" id="hamburger" aria-label="Open Menu"><span></span><span></span><span></span></button>
       </div>
     </div>
@@ -33,53 +41,47 @@
   <section class="contact-layout">
     <div class="container">
       <div class="contact-grid">
-
-        <!-- LEFT: Info -->
+        <!-- LEFT -->
         <div class="contact-info">
-          <p class="section-eyebrow">Order Easily</p>
-          <h2>Contact &<br/>Quick Order 🌶️</h2>
+          <div class="eyebrow-pill" style="margin-bottom:1rem"><i class="fa-solid fa-bolt"></i> Order Easily</div>
+          <h2>Contact &<br/>Quick Order</h2>
           <p>
             Order through our form or just drop a WhatsApp — we process all island-wide orders fast!
-            <br/>COD available everywhere. <strong>Gedaratama Gennaganna!</strong>
+            COD available everywhere. <strong>Gedaratama Gennaganna!</strong>
           </p>
-
           <div class="info-cards">
             <div class="info-card">
-              <span class="info-icon">💬</span>
+              <div class="info-icon"><i class="fa-brands fa-whatsapp"></i></div>
               <div>
                 <h4>WhatsApp Order</h4>
                 <p>Chat with us instantly on +94 77 123 4567. Fastest way to order!</p>
               </div>
             </div>
             <div class="info-card">
-              <span class="info-icon">📞</span>
+              <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
               <div>
                 <h4>Call Us</h4>
                 <p>+94 77 123 4567 — Mon to Sat, 8am to 8pm</p>
               </div>
             </div>
             <div class="info-card">
-              <span class="info-icon">📧</span>
+              <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
               <div>
                 <h4>Email</h4>
                 <p>hello@rasavansa.lk — We reply within 24hrs.</p>
               </div>
             </div>
             <div class="info-card">
-              <span class="info-icon">🚚</span>
+              <div class="info-icon"><i class="fa-solid fa-truck-fast"></i></div>
               <div>
                 <h4>Delivery</h4>
                 <p>Island-wide COD. Colombo gets same-day delivery when ordered before noon!</p>
               </div>
             </div>
           </div>
-
           <div style="margin-top:2rem">
-            <a href="https://wa.me/94771234567?text=Hello%20RasaVansa!%20I'd%20like%20to%20order%20some%20spices%20🌶️"
-               class="whatsapp-btn"
-               id="whatsapp-contact"
-               target="_blank" rel="noopener">
-              💬 Order via WhatsApp Now
+            <a href="https://wa.me/94771234567?text=Hello%20RasaVansa!%20I'd%20like%20to%20order%20some%20spices!" class="whatsapp-btn" target="_blank" rel="noopener">
+              <i class="fa-brands fa-whatsapp"></i> Order via WhatsApp Now
             </a>
           </div>
         </div>
@@ -87,31 +89,27 @@
         <!-- RIGHT: Form -->
         <div>
           <form class="order-form" id="order-form" novalidate>
-            <h3>Place Your Order</h3>
-
+            <h3><i class="fa-solid fa-basket-shopping" style="color:var(--maroon);font-size:.8em;margin-right:.4rem"></i> Place Your Order</h3>
             <div class="form-row">
               <div class="form-group">
-                <label for="first-name">First Name</label>
+                <label for="first-name"><i class="fa-solid fa-user"></i> First Name</label>
                 <input type="text" id="first-name" name="first_name" placeholder="Kasun" required/>
               </div>
               <div class="form-group">
-                <label for="last-name">Last Name</label>
+                <label for="last-name"><i class="fa-solid fa-user"></i> Last Name</label>
                 <input type="text" id="last-name" name="last_name" placeholder="Perera" required/>
               </div>
             </div>
-
             <div class="form-group">
-              <label for="phone">Phone Number (WhatsApp)</label>
+              <label for="phone"><i class="fa-brands fa-whatsapp"></i> Phone (WhatsApp)</label>
               <input type="tel" id="phone" name="phone" placeholder="+94 77 000 0000" required/>
             </div>
-
             <div class="form-group">
-              <label for="address">Delivery Address</label>
+              <label for="address"><i class="fa-solid fa-location-dot"></i> Delivery Address</label>
               <textarea id="address" name="address" placeholder="No. 10, Main Street, Colombo 03" required></textarea>
             </div>
-
             <div class="form-group">
-              <label for="product-select">Select Spice</label>
+              <label for="product-select"><i class="fa-solid fa-pepper-hot"></i> Select Spice</label>
               <select id="product-select" name="product" required>
                 <option value="" disabled selected>Choose your spice…</option>
                 <option value="turmeric">Ceylon Turmeric Gold — Rs. 290 / 100g</option>
@@ -122,41 +120,36 @@
                 <option value="golden-milk">Golden Milk Mix — Rs. 380 / 80g</option>
               </select>
             </div>
-
             <div class="form-group">
-              <label for="qty">Quantity</label>
+              <label for="qty"><i class="fa-solid fa-hashtag"></i> Quantity</label>
               <input type="number" id="qty" name="qty" min="1" max="50" value="1"/>
             </div>
-
             <div class="form-group">
-              <label>Payment Method</label>
+              <label><i class="fa-solid fa-credit-card"></i> Payment Method</label>
               <div class="payment-opts">
                 <div class="payment-opt selected" data-pay="cod" id="pay-cod">
-                  <span>💵</span>
+                  <i class="fa-solid fa-money-bill-wave"></i>
                   <span>Cash on Delivery</span>
                 </div>
                 <div class="payment-opt" data-pay="bank" id="pay-bank">
-                  <span>🏦</span>
+                  <i class="fa-solid fa-building-columns"></i>
                   <span>Bank Transfer</span>
                 </div>
                 <div class="payment-opt" data-pay="whatsapp" id="pay-whatsapp">
-                  <span>💬</span>
+                  <i class="fa-brands fa-whatsapp"></i>
                   <span>WhatsApp Pay</span>
                 </div>
               </div>
             </div>
-
             <div class="form-group">
-              <label for="notes">Special Notes (optional)</label>
-              <textarea id="notes" name="notes" placeholder="Extra spicy please! / Gift wrap it 🎁"></textarea>
+              <label for="notes"><i class="fa-solid fa-note-sticky"></i> Special Notes (optional)</label>
+              <textarea id="notes" name="notes" placeholder="Extra spicy please! / Gift wrap it"></textarea>
             </div>
-
             <button type="submit" class="btn btn-primary submit-btn" id="submit-order">
-              Place Order 🌶️
+              <i class="fa-solid fa-paper-plane"></i> Place Order
             </button>
           </form>
         </div>
-
       </div>
     </div>
   </section>
@@ -165,21 +158,42 @@
   <section class="trust-section">
     <div class="container">
       <div class="trust-grid">
-        <div class="trust-item"><span class="trust-icon">🔒</span><h4>Secure Orders</h4><p>Your data stays safe with us.</p></div>
-        <div class="trust-item"><span class="trust-icon">🚀</span><h4>Fast Processing</h4><p>Orders confirmed within 2 hrs.</p></div>
-        <div class="trust-item"><span class="trust-icon">🔄</span><h4>Easy Returns</h4><p>Not happy? Full refund guaranteed.</p></div>
-        <div class="trust-item"><span class="trust-icon">🌿</span><h4>100% Organic</h4><p>Certified pure, no additives.</p></div>
+        <div class="trust-item">
+          <div class="trust-icon-wrap"><i class="fa-solid fa-shield-halved"></i></div>
+          <h4>Secure Orders</h4>
+          <p>Your data stays safe with us.</p>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon-wrap"><i class="fa-solid fa-bolt"></i></div>
+          <h4>Fast Processing</h4>
+          <p>Orders confirmed within 2 hrs.</p>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon-wrap"><i class="fa-solid fa-rotate-left"></i></div>
+          <h4>Easy Returns</h4>
+          <p>Not happy? Full refund guaranteed.</p>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon-wrap"><i class="fa-solid fa-seedling"></i></div>
+          <h4>100% Organic</h4>
+          <p>Certified pure, no additives.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <a href="https://wa.me/94771234567" class="whatsapp-float" id="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp Order">💬</a>
-  <div class="cart-toast" id="cart-toast"></div>
+  <a href="https://wa.me/94771234567" class="whatsapp-float" id="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp Order">
+    <i class="fa-brands fa-whatsapp"></i><span class="wa-pulse"></span>
+  </a>
+  <div class="cart-toast" id="cart-toast"><i class="fa-solid fa-circle-check"></i><span id="toast-msg"></span></div>
 
   <footer class="footer">
-    <div class="container" style="text-align:center;padding:2rem 0;">
-      <a href="index.html" class="logo" style="justify-content:center;margin-bottom:1rem"><span class="logo-icon">🌶️</span><span class="logo-text">RasaVansa</span></a>
-      <p style="color:rgba(255,255,255,0.4);font-size:0.85rem">© 2026 RasaVansa. The Sri Lankan Spice Dynasty.</p>
+    <div class="container" style="text-align:center;padding:2rem 0">
+      <a href="index.html" class="logo footer-logo" style="justify-content:center;margin-bottom:.8rem">
+        <div class="logo-mark"><i class="fa-solid fa-pepper-hot"></i></div>
+        <span class="logo-text">Rasa<strong>Vansa</strong></span>
+      </a>
+      <p style="color:rgba(255,255,255,.35);font-size:.82rem">© 2026 RasaVansa. The Sri Lankan Spice Dynasty.</p>
     </div>
   </footer>
 

@@ -4,10 +4,11 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="Discover the heritage of RasaVansa - Sri Lankan spice traditions from local farmers to your kitchen."/>
-  <title>Our Story | RasaVansa - Heritage</title>
+  <title>Our Story | RasaVansa — Heritage</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
@@ -15,7 +16,10 @@
 
   <nav class="navbar scrolled" id="navbar">
     <div class="nav-container">
-      <a href="index.html" class="logo"><span class="logo-icon">🌶️</span><span class="logo-text">RasaVansa</span></a>
+      <a href="index.html" class="logo">
+        <div class="logo-mark"><i class="fa-solid fa-pepper-hot"></i></div>
+        <span class="logo-text">Rasa<strong>Vansa</strong></span>
+      </a>
       <ul class="nav-links" id="nav-links">
         <li><a href="index.html" class="nav-link">Home</a></li>
         <li><a href="shop.html" class="nav-link">Shop</a></li>
@@ -23,7 +27,11 @@
         <li><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
       <div class="nav-actions">
-        <button class="cart-btn" id="cart-btn" aria-label="View Cart">🛒 <span class="cart-count" id="cart-count">0</span></button>
+        <a href="contact.html" class="btn btn-ghost nav-order-btn"><i class="fa-brands fa-whatsapp"></i> Order Now</a>
+        <button class="cart-btn" id="cart-btn" aria-label="View Cart">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-count" id="cart-count">0</span>
+        </button>
         <button class="hamburger" id="hamburger" aria-label="Open Menu"><span></span><span></span><span></span></button>
       </div>
     </div>
@@ -32,91 +40,85 @@
   <!-- STORY HERO -->
   <section class="story-hero">
     <div class="container">
-      <p class="section-eyebrow">Swadeshiya Pride</p>
-      <h1>Our Heritage 🇱🇰</h1>
+      <div class="eyebrow-pill"><i class="fa-solid fa-map-location-dot"></i> Swadeshiya Pride</div>
+      <h1>Our Heritage <i class="fa-solid fa-flag" style="color:var(--maroon);font-size:.7em"></i></h1>
       <p class="lead">
-        Every pinch of RasaVansa spice carries centuries of Sri Lankan wisdom,<br/>
-        the hands of local farmers, and the soul of <em>Apé Rata</em>.
+        Every pinch of RasaVansa spice carries centuries of Sri Lankan wisdom,
+        the hands of local farmers, and the soul of <em style="color:var(--maroon);font-style:normal;font-weight:700">Apé Rata</em>.
       </p>
-      <a href="shop.html" class="btn btn-primary">Experience the Flavor →</a>
+      <a href="shop.html" class="btn btn-primary"><i class="fa-solid fa-store"></i> Experience the Flavor</a>
     </div>
   </section>
 
   <!-- TIMELINE -->
   <section class="container">
     <div class="timeline">
-
       <div class="timeline-item">
         <div class="tl-content">
-          <p class="tl-year">Ancient Tradition</p>
+          <p class="tl-year"><i class="fa-solid fa-clock-rotate-left"></i> Ancient Tradition</p>
           <h3>The Spice Routes of Lanka</h3>
           <p>Sri Lanka was the jewel of ancient spice trade routes. Arab, Portuguese, and Dutch traders all came for our cinnamon, pepper, and turmeric — the original "Flavor Dynasty."</p>
         </div>
-        <div class="tl-dot">🌍</div>
+        <div class="tl-dot"><i class="fa-solid fa-globe"></i></div>
         <div class="tl-empty"></div>
       </div>
-
       <div class="timeline-item">
         <div class="tl-empty"></div>
-        <div class="tl-dot">👨‍🌾</div>
+        <div class="tl-dot"><i class="fa-solid fa-person-digging"></i></div>
         <div class="tl-content">
-          <p class="tl-year">Our Farmers</p>
+          <p class="tl-year"><i class="fa-solid fa-handshake"></i> Our Farmers</p>
           <h3>Direct from Local Hands</h3>
-          <p>We work directly with small-scale farmers in Matale, Kandy and Kurunegala districts — paying fair prices, zero middlemen. Their knowledge, passed down generations, is in every packet.</p>
+          <p>We work directly with small-scale farmers in Matale, Kandy and Kurunegala — paying fair prices, zero middlemen. Their knowledge, passed down generations, is in every packet.</p>
         </div>
       </div>
-
       <div class="timeline-item">
         <div class="tl-content">
-          <p class="tl-year">Tradition Meets Modern</p>
+          <p class="tl-year"><i class="fa-solid fa-sun"></i> Tradition Meets Modern</p>
           <h3>Sun-Dried, Hand-Ground</h3>
-          <p>Spices are sun-dried using traditional methods for 3–5 days, then stone-ground in small batches. No bulk factory processing — just slow, careful craft.</p>
+          <p>Spices are sun-dried for 3–5 days using traditional methods, then stone-ground in small batches. No bulk factory processing — just slow, careful craft.</p>
         </div>
-        <div class="tl-dot">☀️</div>
+        <div class="tl-dot"><i class="fa-solid fa-wheat-awn"></i></div>
         <div class="tl-empty"></div>
       </div>
-
       <div class="timeline-item">
         <div class="tl-empty"></div>
-        <div class="tl-dot">📦</div>
+        <div class="tl-dot"><i class="fa-solid fa-rocket"></i></div>
         <div class="tl-content">
-          <p class="tl-year">2024 — Founded</p>
+          <p class="tl-year"><i class="fa-solid fa-calendar-check"></i> 2024 — Founded</p>
           <h3>RasaVansa is Born</h3>
           <p>We launched RasaVansa to bring this heritage directly to Sri Lankan households. "Rasa" (Flavor) + "Vansa" (Dynasty) — a name that means everything.</p>
         </div>
       </div>
-
       <div class="timeline-item">
         <div class="tl-content">
-          <p class="tl-year">Today & Beyond</p>
+          <p class="tl-year"><i class="fa-solid fa-trophy"></i> Today & Beyond</p>
           <h3>5,000+ Happy Kitchens</h3>
           <p>From Colombo apartments to Jaffna homes — our spices now season over 5,000 kitchens island-wide. And we're just getting started.</p>
         </div>
-        <div class="tl-dot">🏆</div>
+        <div class="tl-dot"><i class="fa-solid fa-star"></i></div>
         <div class="tl-empty"></div>
       </div>
-
     </div>
   </section>
 
-  <!-- PARALLAX / FARMER SECTION -->
+  <!-- FARMER / PARALLAX SECTION -->
   <section class="parallax-section">
     <div class="container">
       <h2>From Their Hands to Your Kitchen</h2>
       <p>We believe in honest partnerships. Every purchase directly supports a Sri Lankan farming family.</p>
       <div class="farmer-grid">
         <div class="farmer-card">
-          <div class="farmer-icon">🌱</div>
+          <div class="farmer-icon"><i class="fa-solid fa-seedling"></i></div>
           <h4>Grown with Care</h4>
           <p>Natural fertilizers, no pesticides. True organic farming the old way.</p>
         </div>
         <div class="farmer-card">
-          <div class="farmer-icon">💰</div>
+          <div class="farmer-icon"><i class="fa-solid fa-coins"></i></div>
           <h4>Fair Trade Price</h4>
           <p>Farmers earn 40% more than market rate. Zero exploitation.</p>
         </div>
         <div class="farmer-card">
-          <div class="farmer-icon">🤝</div>
+          <div class="farmer-icon"><i class="fa-solid fa-people-group"></i></div>
           <h4>Community First</h4>
           <p>Part of every sale funds farmer training programs in rural Sri Lanka.</p>
         </div>
@@ -127,24 +129,25 @@
   <!-- CTA -->
   <section style="padding:5rem 0;text-align:center;background:var(--cream)">
     <div class="container">
-      <p class="section-eyebrow">Join the Dynasty</p>
-      <h2 style="font-family:var(--font-serif);font-size:clamp(2rem,4vw,3rem);color:var(--maroon-dark);margin-bottom:1rem">
-        Taste the Heritage
-      </h2>
-      <p style="color:var(--text-light);margin-bottom:2rem">
-        Order today and experience what real Sri Lankan flavor tastes like.
-      </p>
-      <a href="shop.html" class="btn btn-primary btn-lg">Shop the Collection 🌶️</a>
+      <div class="eyebrow-pill" style="margin-bottom:1rem"><i class="fa-solid fa-crown"></i> Join the Dynasty</div>
+      <h2 style="font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);color:var(--maroon-d);margin-bottom:1rem">Taste the Heritage</h2>
+      <p style="color:var(--text-light);margin-bottom:2rem">Order today and experience what real Sri Lankan flavor tastes like.</p>
+      <a href="shop.html" class="btn btn-primary btn-lg"><i class="fa-solid fa-basket-shopping"></i> Shop the Collection</a>
     </div>
   </section>
 
-  <a href="https://wa.me/94771234567" class="whatsapp-float" id="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp Order">💬</a>
-  <div class="cart-toast" id="cart-toast"></div>
+  <a href="https://wa.me/94771234567" class="whatsapp-float" id="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp Order">
+    <i class="fa-brands fa-whatsapp"></i><span class="wa-pulse"></span>
+  </a>
+  <div class="cart-toast" id="cart-toast"><i class="fa-solid fa-circle-check"></i><span id="toast-msg"></span></div>
 
   <footer class="footer">
-    <div class="container" style="text-align:center;padding:2rem 0;">
-      <a href="index.html" class="logo" style="justify-content:center;margin-bottom:1rem"><span class="logo-icon">🌶️</span><span class="logo-text">RasaVansa</span></a>
-      <p style="color:rgba(255,255,255,0.4);font-size:0.85rem">© 2026 RasaVansa. The Sri Lankan Spice Dynasty.</p>
+    <div class="container" style="text-align:center;padding:2rem 0">
+      <a href="index.html" class="logo footer-logo" style="justify-content:center;margin-bottom:.8rem">
+        <div class="logo-mark"><i class="fa-solid fa-pepper-hot"></i></div>
+        <span class="logo-text">Rasa<strong>Vansa</strong></span>
+      </a>
+      <p style="color:rgba(255,255,255,.35);font-size:.82rem">© 2026 RasaVansa. The Sri Lankan Spice Dynasty.</p>
     </div>
   </footer>
 

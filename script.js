@@ -1,11 +1,12 @@
 /* ===================================================
-   RASAVANSA - script.js
+   RASAVANSA - script.js v2
    Interactions, animations, cart, slider, particles
    =================================================== */
 
 // ============ UTILITY ============
 const $ = (sel, ctx = document) => ctx.querySelector(sel);
 const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
+
 
 // ============ NAVBAR SCROLL ============
 const navbar = $('#navbar');
@@ -37,8 +38,11 @@ function updateCartCount() {
 }
 
 function showToast(msg) {
+  const toast   = $('#cart-toast');
+  const toastMsg = $('#toast-msg');
   if (!toast) return;
-  toast.textContent = msg;
+  if (toastMsg) toastMsg.textContent = msg;
+  else toast.textContent = msg;
   toast.classList.add('show');
   setTimeout(() => toast.classList.remove('show'), 2800);
 }
@@ -64,6 +68,13 @@ function addToCart(name, price) {
 
 // Attach add-to-cart buttons
 $$('.add-to-cart').forEach(btn => {
+  btn.addEventListener('click', () => {
+    addToCart(btn.dataset.name, btn.dataset.price);
+  });
+});
+
+// Attach hero product pill add buttons
+$$('.pill-add').forEach(btn => {
   btn.addEventListener('click', () => {
     addToCart(btn.dataset.name, btn.dataset.price);
   });
