@@ -1,276 +1,149 @@
 /* ===================================================
-   RASAVANSA - script.js v2
-   Interactions, animations, cart, slider, particles
+   RASAVANSA - PREMUM CORE JS
+   GSAP, LENIS, & INTERACTIVE DYNAMICS
    =================================================== */
 
-// ============ UTILITY ============
-const $ = (sel, ctx = document) => ctx.querySelector(sel);
-const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
+// --- 01. INITIALIZATION & UTILITIES ---
+const $ = (s) => document.querySelector(s);
+const $$ = (s) => [...document.querySelectorAll(s)];
 
-
-// ============ NAVBAR SCROLL ============
-const navbar = $('#navbar');
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 40);
-}, { passive: true });
-
-// ============ HAMBURGER MENU ============
-const hamburger = $('#hamburger');
-const navLinks  = $('#nav-links');
-hamburger?.addEventListener('click', () => {
-  navLinks.classList.toggle('open');
-  hamburger.classList.toggle('open');
-});
-// Close menu on link click
-$$('.nav-link').forEach(l => l.addEventListener('click', () => {
-  navLinks.classList.remove('open');
-  hamburger.classList.remove('open');
-}));
-
-// ============ CART (local session storage) ============
-let cart = JSON.parse(sessionStorage.getItem('rv_cart') || '[]');
-const cartCountEl = $('#cart-count');
-const toast       = $('#cart-toast');
-
-function updateCartCount() {
-  const count = cart.reduce((a, i) => a + i.qty, 0);
-  if (cartCountEl) cartCountEl.textContent = count;
-}
-
-function showToast(msg) {
-  const toast   = $('#cart-toast');
-  const toastMsg = $('#toast-msg');
-  if (!toast) return;
-  if (toastMsg) toastMsg.textContent = msg;
-  else toast.textContent = msg;
-  toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 2800);
-}
-
-function addToCart(name, price) {
-  const existing = cart.find(i => i.name === name);
-  if (existing) {
-    existing.qty++;
-  } else {
-    cart.push({ name, price: Number(price), qty: 1 });
-  }
-  sessionStorage.setItem('rv_cart', JSON.stringify(cart));
-  updateCartCount();
-  showToast(`✅ "${name}" added to cart!`);
-
-  // Bounce animation on cart button
-  const cartBtn = $('#cart-btn');
-  if (cartBtn) {
-    cartBtn.style.transform = 'scale(1.2)';
-    setTimeout(() => { cartBtn.style.transform = ''; }, 250);
-  }
-}
-
-// Attach add-to-cart buttons
-$$('.add-to-cart').forEach(btn => {
-  btn.addEventListener('click', () => {
-    addToCart(btn.dataset.name, btn.dataset.price);
-  });
+document.addEventListener('DOMContentLoaded', () => {
+  initLenis();
+  initGSAPAnimations();
+  initMagneticButtons();
+  initCart();
+  initNavbar();
 });
 
-// Attach hero product pill add buttons
-$$('.pill-add').forEach(btn => {
-  btn.addEventListener('click', () => {
-    addToCart(btn.dataset.name, btn.dataset.price);
+// --- 02. SMOOTH SCROLL (LENIS) ---
+function initLenis() {
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true
   });
-});
 
-// Cart count display on load
-updateCartCount();
-
-// ============ SPICE INTENSITY SLIDER ============
-const slider     = $('#intensity-slider');
-const sliderHint = $('#slider-hint');
-
-const spiceHints = [
-  { max: 20,  text: '🟡 Mild Turmeric Warmth',    hue: '85' },
-  { max: 40,  text: '🍊 Gentle Spice Blend',        hue: '55' },
-  { max: 60,  text: '🟠 Medium Curry Heat',          hue: '30' },
-  { max: 80,  text: '🔴 Bold Red Chili Kick!',       hue: '10' },
-  { max: 101, text: '💥 Full Devil Chili Fire! 🌶️',  hue: '0'  },
-];
-
-function updateSlider(val) {
-  if (!slider) return;
-  const hint = spiceHints.find(s => val <= s.max);
-
-  // Shift accent CSS variable
-  document.documentElement.style.setProperty('--saffron', `hsl(${hint.hue}, 80%, 45%)`);
-  document.documentElement.style.setProperty('--saffron-light', `hsl(${hint.hue}, 80%, 60%)`);
-
-  // Shift background tint
-  document.body.style.background = `hsl(${hint.hue}, 20%, 98%)`;
-
-  if (sliderHint) sliderHint.textContent = hint.text;
-
-  // Update slider track gradient
-  slider.style.background = `linear-gradient(to right,
-    hsl(${hint.hue}, 80%, 55%) 0%,
-    hsl(0, 80%, 40%) 100%)`;
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
 }
 
-slider?.addEventListener('input', e => updateSlider(Number(e.target.value)));
-updateSlider(30); // init
+// --- 03. GSAP ANIMATIONS ---
+function initGSAPAnimations() {
+  gsap.registerPlugin(ScrollTrigger);
 
-// ============ TESTIMONIALS TICKER — CLONE FOR INFINITE SCROLL ============
-const tickerTrack = $('#ticker-track');
-if (tickerTrack) {
-  // Clone children for seamless loop
-  const originalItems = [...tickerTrack.children];
-  originalItems.forEach(item => {
-    const clone = item.cloneNode(true);
-    tickerTrack.appendChild(clone);
+  // Character Split Simulation (Simple)
+  $$('.hero-title').forEach(title => {
+    const text = title.innerText;
+    title.innerHTML = text.split(' ').map(word => 
+      `<span class="word" style="display:inline-block; overflow:hidden;">
+        <span class="char" style="display:inline-block">${word}</span>
+      </span>`
+    ).join(' ');
   });
-}
 
-// ============ INTERSECTION OBSERVER — FADE UP ANIMATIONS ============
-const observerOpts = { threshold: 0.15, rootMargin: '0px 0px -60px 0px' };
+  // Hero Entrance
+  const heroTl = gsap.timeline({ defaults: { ease: 'expo.out' } });
+  heroTl
+    .from('.hero-badge', { y: 20, opacity: 0, duration: 1 })
+    .from('.hero-title .char', { y: 100, stagger: 0.1, duration: 1.2 }, '-=0.8')
+    .from('.hero-desc', { y: 20, opacity: 0, duration: 1 }, '-=0.8')
+    .from('.hero-cta', { y: 20, opacity: 0, duration: 1 }, '-=0.8')
+    .from('.hero-bg img', { scale: 1.2, duration: 2 }, 0);
 
-const fadeObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      fadeObserver.unobserve(e.target);
-    }
-  });
-}, observerOpts);
-
-// Apply fade-up to section headers and cards
-$$('.section-header, .bento-card, .step-card, .trust-item, .review-card, .timeline-item').forEach(el => {
-  el.classList.add('fade-up');
-  fadeObserver.observe(el);
-});
-
-// ============ PARTICLE CANVAS — FLOATING SPICE PARTICLES ============
-(function initParticles() {
-  const canvas = $('#particle-canvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-
-  const EMOJIS = ['🌶️', '🫙', '⚫', '✨', '🌿'];
-  let particles = [];
-  let W, H;
-
-  function resize() {
-    W = canvas.width  = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize, { passive: true });
-
-  class Particle {
-    constructor() { this.reset(true); }
-    reset(random = false) {
-      this.x    = Math.random() * W;
-      this.y    = random ? Math.random() * H : H + 30;
-      this.size = Math.random() * 14 + 10;
-      this.vx   = (Math.random() - 0.5) * 0.4;
-      this.vy   = -(Math.random() * 0.6 + 0.2);
-      this.alpha= Math.random() * 0.3 + 0.05;
-      this.emoji= EMOJIS[Math.floor(Math.random() * EMOJIS.length)];
-      this.rot  = Math.random() * Math.PI * 2;
-      this.rotV = (Math.random() - 0.5) * 0.01;
-    }
-    update() {
-      this.x  += this.vx;
-      this.y  += this.vy;
-      this.rot += this.rotV;
-      if (this.y < -40) this.reset();
-    }
-    draw() {
-      ctx.save();
-      ctx.globalAlpha = this.alpha;
-      ctx.translate(this.x, this.y);
-      ctx.rotate(this.rot);
-      ctx.font = `${this.size}px serif`;
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText(this.emoji, 0, 0);
-      ctx.restore();
-    }
-  }
-
-  // Create particles
-  for (let i = 0; i < 30; i++) particles.push(new Particle());
-
-  function animate() {
-    ctx.clearRect(0, 0, W, H);
-    particles.forEach(p => { p.update(); p.draw(); });
-    requestAnimationFrame(animate);
-  }
-  animate();
-})();
-
-// ============ SHOP FILTERS ============
-const filterBtns = $$('.filter-btn');
-const productCards = $$('.product-card');
-
-filterBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    filterBtns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-
-    const filter = btn.dataset.filter;
-    productCards.forEach(card => {
-      if (filter === 'all' || card.dataset.category === filter || card.dataset.heat === filter) {
-        card.removeAttribute('data-hidden');
-        card.style.display = '';
-      } else {
-        card.setAttribute('data-hidden', 'true');
-        card.style.display = 'none';
-      }
+  // Global Scroll Reveal [data-reveal]
+  $$('[data-reveal]').forEach(el => {
+    gsap.from(el, {
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 85%',
+        toggleActions: 'play none none none'
+      },
+      y: 60,
+      opacity: 0,
+      duration: 1.2,
+      ease: 'power3.out'
     });
   });
-});
 
-// Quick-add buttons in shop
-$$('.quick-add').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const card = btn.closest('.product-card');
-    addToCart(card.dataset.name, card.dataset.price);
+  // Parallax Effect [data-parallax]
+  $$('[data-parallax]').forEach(el => {
+    const speed = el.dataset.parallax || 0.1;
+    gsap.to(el, {
+      scrollTrigger: {
+        trigger: el,
+        scrub: true,
+        start: 'top bottom',
+        end: 'bottom top'
+      },
+      y: (i, target) => -ScrollTrigger.maxScroll(window) * speed,
+      ease: 'none'
+    });
   });
-});
 
-// ============ PAYMENT OPTION SELECTOR ============
-const paymentOpts = $$('.payment-opt');
-paymentOpts.forEach(opt => {
-  opt.addEventListener('click', () => {
-    paymentOpts.forEach(o => o.classList.remove('selected'));
-    opt.classList.add('selected');
+  // Horizontal Collection Scrub (Optional if needed)
+}
+
+// --- 04. MAGNETIC BUTTONS ---
+function initMagneticButtons() {
+  $$('.magnetic-wrap').forEach(wrap => {
+    const btn = wrap.querySelector('a, button');
+    wrap.addEventListener('mousemove', (e) => {
+      const rect = wrap.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      gsap.to(btn, { x: x * 0.3, y: y * 0.3, duration: 0.3 });
+    });
+    wrap.addEventListener('mouseleave', () => {
+      gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.3)' });
+    });
   });
-});
+}
 
-// ============ ORDER FORM SUBMIT ============
-const orderForm = $('#order-form');
-orderForm?.addEventListener('submit', e => {
-  e.preventDefault();
-  showToast('🎉 Order placed! We\'ll WhatsApp you shortly!');
-  orderForm.reset();
-  paymentOpts.forEach(o => o.classList.remove('selected'));
-});
+// --- 05. NAVBAR DYNAMICS ---
+function initNavbar() {
+  const nav = $('.navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  });
+}
 
-// ============ TIMELINE INTERSECTION (story page) ============
-$$('.timeline-item').forEach(item => {
-  fadeObserver.observe(item);
-});
+// --- 06. CART LOGIC ---
+function initCart() {
+  let count = 0;
+  const countEl = $('.cart-count');
+  
+  $$('.add-to-cart').forEach(btn => {
+    btn.addEventListener('click', () => {
+      count++;
+      countEl.innerText = count;
+      
+      // Feedback
+      gsap.fromTo(countEl, { scale: 0.5 }, { scale: 1, duration: 0.4, ease: 'back.out(3)' });
+      
+      // Floating spice effect on click
+      createFloatingSpice(btn);
+    });
+  });
+}
 
-// ============ SMOOTH ACTIVE NAV LINK ============
-const currentPage = location.pathname.split('/').pop() || 'index.html';
-$$('.nav-link').forEach(link => {
-  const href = link.getAttribute('href');
-  if (href === currentPage || (currentPage === '' && href === 'index.html')) {
-    link.classList.add('active');
-  } else {
-    link.classList.remove('active');
-  }
-});
+function createFloatingSpice(btn) {
+  const spice = document.createElement('div');
+  spice.innerHTML = '🌶️';
+  spice.style.position = 'fixed';
+  spice.style.left = `${event.clientX}px`;
+  spice.style.top = `${event.clientY}px`;
+  spice.style.pointerEvents = 'none';
+  spice.style.zIndex = '9999';
+  document.body.appendChild(spice);
 
-// ============ STAGGER BENTO CARDS ============
-$$('.bento-card, .product-card').forEach((card, i) => {
-  card.style.transitionDelay = `${i * 80}ms`;
-});
+  gsap.to(spice, {
+    y: -100,
+    x: (Math.random() - 0.5) * 100,
+    opacity: 0,
+    duration: 1,
+    onComplete: () => spice.remove()
+  });
+}

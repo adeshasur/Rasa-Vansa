@@ -3,13 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="RasaVansa — Sri Lanka's premium spice dynasty. Authentic Turmeric, Chili & Black Pepper, straight from local farmers to your kitchen."/>
-  <title>RasaVansa | The Sri Lankan Spice Dynasty</title>
+  <meta name="description" content="The RasaVansa Dynasty — Premium Sri Lankan spices. Sun-dried turmeric, crimson peppers, and royal blends from the heart of Ceylon."/>
+  <title>RasaVansa | The Spice Dynasty</title>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400;1,700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
   <link rel="stylesheet" href="style.css"/>
+
+  <!-- Animation Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
 </head>
 <body>
 
@@ -17,161 +23,108 @@
   <nav class="navbar" id="navbar">
     <div class="nav-container">
       <a href="index.html" class="logo">
-        <div class="logo-mark"><i class="fa-solid fa-pepper-hot"></i></div>
-        <span class="logo-text">Rasa<strong>Vansa</strong></span>
+        <div class="logo-mark">R</div>
+        <span class="logo-text">RasaVansa</span>
       </a>
       <ul class="nav-links" id="nav-links">
-        <li><a href="index.html" class="nav-link active">Home</a></li>
-        <li><a href="shop.html" class="nav-link">Shop</a></li>
-        <li><a href="story.html" class="nav-link">Our Story</a></li>
+        <li><a href="index.html" class="nav-link active">Dynasty</a></li>
+        <li><a href="shop.html" class="nav-link">Collection</a></li>
+        <li><a href="story.html" class="nav-link">Origin</a></li>
         <li><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
       <div class="nav-actions">
-        <a href="contact.html" class="btn btn-ghost nav-order-btn"><i class="fa-brands fa-whatsapp"></i> Order Now</a>
-        <button class="cart-btn" id="cart-btn" aria-label="View Cart">
+        <button class="cart-btn" id="cart-btn">
           <i class="fa-solid fa-bag-shopping"></i>
-          <span class="cart-count" id="cart-count">0</span>
+          <span class="cart-count">0</span>
         </button>
-        <button class="hamburger" id="hamburger" aria-label="Open Menu"><span></span><span></span><span></span></button>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
       </div>
     </div>
   </nav>
 
-  <!-- ====== FULL-IMAGE HERO ====== -->
-  <section class="hero-img" id="hero">
-    <div class="hero-img-bg">
-      <img src="images/hero.png" alt="Premium Sri Lankan spices in clay bowls" id="hero-photo"/>
-      <div class="hero-img-overlay"></div>
+  <!-- ====== HERO (Cinematic) ====== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <img src="images/hero.png" alt="Pure Ceylon Spices" id="hero-img"/>
+      <div class="hero-overlay"></div>
     </div>
-    <div class="hero-img-content">
-      <div class="hero-badge">
-        <i class="fa-solid fa-award"></i>
-        <span>Sri Lanka's #1 Premium Spice Brand</span>
+    
+    <div class="hero-spice-clouds">
+      <div class="spice-cloud cloud-1"></div>
+      <div class="spice-cloud cloud-2"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge" data-reveal>
+        <span>The Dynasty of Pure Flavor</span>
       </div>
-      <h1 class="hero-img-title">
-        <span class="sinhala-text">රස <em>වංශය</em></span>
-        <span class="english-sub">The Flavor Dynasty</span>
+      <h1 class="hero-title" data-reveal>
+        The <span class="italic">Dynasty</span> <br> of Lanka
       </h1>
-      <p class="hero-img-desc">
-        From highland farms to your kitchen — pure, authentic Ceylon spices.<br>
-        <strong>Gedaratama Gennaganna.</strong>
+      <p class="hero-desc" data-reveal>
+        Rooted in the ancient spice trails of Ceylon, our hand-milled spices carry the rhythm of the mountain rain and the warmth of the island sun.
       </p>
-      <div class="hero-img-cta">
-        <a href="shop.html" class="btn btn-saffron btn-lg" id="shop-now-btn">
-          <i class="fa-solid fa-store"></i> Shop Now
-        </a>
-        <a href="story.html" class="btn btn-white-outline btn-lg">
-          <i class="fa-solid fa-book-open"></i> Our Heritage
-        </a>
-      </div>
-      <!-- Spice level slider -->
-      <div class="hero-slider-bar">
-        <i class="fa-solid fa-temperature-low" style="color:var(--saffron-light)"></i>
-        <input type="range" id="intensity-slider" min="0" max="100" value="25" aria-label="Spice intensity"/>
-        <i class="fa-solid fa-fire" style="color:#ff5252"></i>
-        <span class="slider-val" id="slider-val">Mild</span>
+      <div class="hero-cta" data-reveal>
+        <div class="magnetic-wrap">
+          <a href="shop.html" class="btn-primary">Shop Collection</a>
+        </div>
+        <a href="story.html" class="btn-secondary">Our Origin</a>
       </div>
     </div>
-    <div class="hero-img-stats">
-      <div class="hstat"><strong>5,000+</strong><span>Happy Kitchens</span></div>
-      <div class="hstat-div"></div>
-      <div class="hstat"><strong>100%</strong><span>Organic</span></div>
-      <div class="hstat-div"></div>
-      <div class="hstat"><strong>COD</strong><span>Island-wide</span></div>
-      <div class="hstat-div"></div>
-      <div class="hstat"><strong>3+</strong><span>Premium Spices</span></div>
-    </div>
-    <div class="scroll-cue"><span>Explore</span><i class="fa-solid fa-chevron-down"></i></div>
   </section>
 
-  <!-- ====== TOP PICKS — IMAGE CARDS ====== -->
-  <section class="top-picks" id="top-picks">
-    <div class="container">
-      <div class="section-header">
-        <div class="eyebrow-pill"><i class="fa-solid fa-star"></i> Fan Favourites</div>
-        <h2>Top <span class="text-accent">3</span> Picks</h2>
-        <p>හොඳම රස — Our most-loved spice packs, blended to perfection.</p>
+  <!-- ====== COLLECTION (Asymmetrical Bento) ====== -->
+  <section class="collection" id="collection">
+    <div class="collection-grid">
+      
+      <!-- Header Block -->
+      <div class="collection-header" data-reveal>
+        <span class="sinhala-text" style="color:var(--lion-maroon); font-weight: 700; margin-bottom: 0.5rem; display: block;">රස වංශය</span>
+        <h2>The Royal <br> <span class="text-accent italic">Selection</span></h2>
+        <p>Expertly curated, sun-dried, and hand-packed. Experience the soul of Sri Lankan heritage in every grain.</p>
       </div>
 
-      <div class="product-img-grid">
-        <!-- Turmeric - Featured Large -->
-        <div class="pic-card pic-featured" data-product="turmeric">
-          <div class="pic-img-wrap">
-            <img src="images/turmeric.png" alt="Ceylon Turmeric Gold" loading="lazy"/>
-            <div class="pic-img-overlay"></div>
-          </div>
-          <div class="pic-tag"><i class="fa-solid fa-trophy"></i> Best Seller</div>
-          <div class="pic-body">
-            <div class="pic-info">
-              <h3>Ceylon Turmeric Gold</h3>
-              <p>High-curcumin, sun-dried, stone-ground. A kitchen essential.</p>
-              <div class="heat-row">
-                <span class="heat-label"><i class="fa-solid fa-fire-flame-curved"></i> Heat</span>
-                <div class="heat-pips"><span class="pip on"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span></div>
-                <span class="heat-text">Mild</span>
-              </div>
-            </div>
-            <div class="pic-footer">
-              <div class="price-group"><span class="price">Rs. 290</span><span class="unit">/ 100g</span></div>
-              <button class="btn btn-primary add-to-cart" id="add-turmeric" data-name="Ceylon Turmeric Gold" data-price="290">
-                <i class="fa-solid fa-bag-shopping"></i> Add
-              </button>
-            </div>
-          </div>
+      <!-- Turmeric Plinth -->
+      <div class="plinth-card bento-tall" data-reveal>
+        <div class="plinth-img-wrap">
+          <img src="images/turmeric.png" alt="Ceylon Turmeric Gold"/>
         </div>
-
-        <!-- Chili -->
-        <div class="pic-card" data-product="chili">
-          <div class="pic-img-wrap">
-            <img src="images/chili.png" alt="Red Devil Chili" loading="lazy"/>
-            <div class="pic-img-overlay"></div>
-          </div>
-          <div class="pic-tag chili-tag"><i class="fa-solid fa-fire"></i> Hot Pick</div>
-          <div class="pic-body">
-            <div class="pic-info">
-              <h3>Red Devil Chili</h3>
-              <p>Sun-roasted for pure fiery depth and authentic Lanka heat.</p>
-              <div class="heat-row">
-                <span class="heat-label"><i class="fa-solid fa-fire-flame-curved"></i> Heat</span>
-                <div class="heat-pips"><span class="pip on"></span><span class="pip on"></span><span class="pip on"></span><span class="pip on"></span><span class="pip"></span></div>
-                <span class="heat-text">Hot</span>
-              </div>
-            </div>
-            <div class="pic-footer">
-              <div class="price-group"><span class="price">Rs. 320</span><span class="unit">/ 100g</span></div>
-              <button class="btn btn-primary add-to-cart" id="add-chili" data-name="Red Devil Chili" data-price="320">
-                <i class="fa-solid fa-bag-shopping"></i> Add
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Black Pepper -->
-        <div class="pic-card" data-product="pepper">
-          <div class="pic-img-wrap">
-            <img src="images/pepper.png" alt="Ceylon Black Pepper" loading="lazy"/>
-            <div class="pic-img-overlay"></div>
-          </div>
-          <div class="pic-tag organic-tag"><i class="fa-solid fa-leaf"></i> Organic</div>
-          <div class="pic-body">
-            <div class="pic-info">
-              <h3>Ceylon Black Pepper</h3>
-              <p>Bold, aromatic whole peppercorns from Matale highlands.</p>
-              <div class="heat-row">
-                <span class="heat-label"><i class="fa-solid fa-fire-flame-curved"></i> Heat</span>
-                <div class="heat-pips"><span class="pip on"></span><span class="pip on"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span></div>
-                <span class="heat-text">Medium</span>
-              </div>
-            </div>
-            <div class="pic-footer">
-              <div class="price-group"><span class="price">Rs. 450</span><span class="unit">/ 100g</span></div>
-              <button class="btn btn-primary add-to-cart" id="add-pepper" data-name="Ceylon Black Pepper" data-price="450">
-                <i class="fa-solid fa-bag-shopping"></i> Add
-              </button>
-            </div>
-          </div>
+        <div class="plinth-meta">
+          <span>Sun-Dried Gold</span>
+          <h3>Kaha</h3>
+          <p style="font-size: 0.8rem; opacity: 0.6; margin-bottom: 1rem;">Sun-dried stone-ground turmeric with high curcumin content.</p>
+          <span class="plinth-price">Rs. 290</span>
+          <br>
+          <button class="cart-btn add-to-cart" data-name="Ceylon Turmeric Gold" data-price="290">Add to Bag</button>
         </div>
       </div>
+
+      <!-- Chili Plinth -->
+      <div class="plinth-card" data-reveal>
+        <div class="plinth-img-wrap">
+          <img src="images/chili.png" alt="Red Devil Chili"/>
+        </div>
+        <div class="plinth-meta">
+          <span>Crimson Heat</span>
+          <h3>Miris</h3>
+          <span class="plinth-price">Rs. 320</span>
+        </div>
+      </div>
+
+      <!-- Pepper Plinth -->
+      <div class="plinth-card" data-reveal>
+        <div class="plinth-img-wrap">
+          <img src="images/pepper.png" alt="Black Pearl Pepper"/>
+        </div>
+        <div class="plinth-meta">
+          <span>The King of Spices</span>
+          <h3>Gambiris</h3>
+          <span class="plinth-price">Rs. 450</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
 
       <div class="section-cta">
         <a href="shop.html" class="btn btn-outline-dark">
@@ -181,213 +134,94 @@
     </div>
   </section>
 
-  <!-- ====== COLLECTION SPLIT BANNER ====== -->
-  <section class="split-banner">
-    <div class="split-img">
-      <img src="images/collection.png" alt="RasaVansa spice collection flat lay" loading="lazy"/>
-      <div class="split-gradient"></div>
-    </div>
-    <div class="split-content">
-      <div class="eyebrow-pill light-pill"><i class="fa-solid fa-boxes-stacked"></i> Full Collection</div>
-      <h2>Every Spice,<br><span style="color:var(--saffron-light)">Perfectly Packed</span></h2>
-      <p>Freshness-sealed kraft pouches, hand-labeled, batch-numbered. Because you deserve the best quality.</p>
-      <ul class="split-list">
-        <li><i class="fa-solid fa-circle-check"></i> No additives or preservatives</li>
-        <li><i class="fa-solid fa-circle-check"></i> Sealed for 12-month freshness</li>
-        <li><i class="fa-solid fa-circle-check"></i> Sun-dried, stone-ground</li>
-        <li><i class="fa-solid fa-circle-check"></i> Direct from farmers</li>
-      </ul>
-      <a href="shop.html" class="btn btn-saffron"><i class="fa-solid fa-basket-shopping"></i> Shop the Collection</a>
-    </div>
-  </section>
-
-  <!-- ====== 3-STEP QUICK ORDER ====== -->
-  <section class="quick-order" id="quick-order">
-    <div class="container">
-      <div class="section-header light">
-        <div class="eyebrow-pill light-pill"><i class="fa-solid fa-bolt"></i> Simple & Fast</div>
-        <h2>Order in <span style="color:var(--saffron-light)">3 Steps</span></h2>
-        <p>Door ekama genaganna — island-wide delivery, hassle-free.</p>
-      </div>
-      <div class="steps-row">
-        <div class="step-card">
-          <div class="step-icon-wrap"><i class="fa-solid fa-magnifying-glass"></i></div>
-          <div class="step-num">01</div>
-          <h3>Pick Your Spice</h3>
-          <p>Browse our curated premium Ceylon spice collection.</p>
-        </div>
-        <div class="step-arrow"><i class="fa-solid fa-arrow-right"></i></div>
-        <div class="step-card">
-          <div class="step-icon-wrap"><i class="fa-solid fa-box-open"></i></div>
-          <div class="step-num">02</div>
-          <h3>We Pack Fresh</h3>
-          <p>Packed to order — sealed for maximum freshness.</p>
-        </div>
-        <div class="step-arrow"><i class="fa-solid fa-arrow-right"></i></div>
-        <div class="step-card">
-          <div class="step-icon-wrap"><i class="fa-solid fa-motorcycle"></i></div>
-          <div class="step-num">03</div>
-          <h3>Gedarata Delivery</h3>
-          <p>Island-wide COD or WhatsApp — your choice!</p>
-        </div>
-      </div>
-      <div class="cta-center">
-        <a href="contact.html" class="btn btn-saffron btn-lg">
-          <i class="fa-brands fa-whatsapp"></i> Order Now — Badaginna Epa!
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ====== FARMER IMAGE + STORY TEASER ====== -->
-  <section class="farmer-split">
-    <div class="farmer-split-img">
-      <img src="images/farmer.png" alt="Sri Lankan spice farmer in turmeric field" loading="lazy"/>
-      <div class="farmer-overlay"></div>
+  <!-- ====== STORY (The Origin) ====== -->
+  <section class="farmer-split" id="story">
+    <div class="farmer-split-img" data-parallax="0.2">
+      <img src="images/farmer.png" alt="Sri Lankan spice farmer"/>
+      <div class="hero-overlay"></div>
     </div>
     <div class="farmer-split-text">
-      <div class="eyebrow-pill"><i class="fa-solid fa-handshake"></i> Our Promise</div>
-      <h2>From Their Hands<br>to Your Kitchen</h2>
-      <p>We work directly with small-scale farmers in Matale, Kandy and Kurunegala. Fair prices, zero middlemen, and the knowledge of generations passed down in every packet.</p>
+      <div class="hero-badge" data-reveal>
+        <span>Our Origin</span>
+      </div>
+      <h2 data-reveal>From Their <span class="italic">Hands</span> <br> to Your Kitchen</h2>
+      <p data-reveal>
+        In the quiet highlands of Matale, generations of families have nurtured the soil with wisdom and patience. We bridge the gap between their heritage and your table, ensuring every packet is a testament to fair trade and pure flavor.
+      </p>
+      
       <div class="promise-grid">
-        <div class="promise-item">
+        <div class="promise-item" data-reveal>
           <i class="fa-solid fa-seedling"></i>
-          <div><strong>Organic Farming</strong><span>No pesticides, ever.</span></div>
+          <div><strong>100% Organic</strong><span>Pure Ceylon soil wisdom.</span></div>
         </div>
-        <div class="promise-item">
-          <i class="fa-solid fa-coins"></i>
-          <div><strong>Fair Trade</strong><span>40% above market rate.</span></div>
-        </div>
-        <div class="promise-item">
-          <i class="fa-solid fa-people-group"></i>
-          <div><strong>Community</strong><span>100+ farmer families.</span></div>
-        </div>
-        <div class="promise-item">
-          <i class="fa-solid fa-sun"></i>
-          <div><strong>Sun-Dried</strong><span>Traditional 5-day method.</span></div>
+        <div class="promise-item" data-reveal>
+          <i class="fa-solid fa-hand-holding-heart"></i>
+          <div><strong>Fair Trade</strong><span>40% above market rates.</span></div>
         </div>
       </div>
-      <a href="story.html" class="btn btn-outline-dark"><i class="fa-solid fa-book-open"></i> Read Our Full Story</a>
-    </div>
-  </section>
 
-  <!-- ====== TESTIMONIALS TICKER ====== -->
-  <section class="testimonials" id="testimonials">
-    <div class="container">
-      <div class="section-header">
-        <div class="eyebrow-pill"><i class="fa-solid fa-heart"></i> Customer Love</div>
-        <h2>What They <span class="text-accent">Say</span></h2>
-      </div>
-    </div>
-    <div class="ticker-wrap">
-      <div class="ticker-track" id="ticker-track">
-        <div class="review-card">
-          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-          <p>"Turmeric ekath chili ekath hodai — mama dan mehethama gannawa!"</p>
-          <div class="reviewer"><div class="reviewer-avatar">N</div><span>Nimali, Colombo</span></div>
-        </div>
-        <div class="review-card">
-          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-          <p>"Delivery fast, quality superrr! Black pepper perfect for my curries."</p>
-          <div class="reviewer"><div class="reviewer-avatar">R</div><span>Ruwan, Kandy</span></div>
-        </div>
-        <div class="review-card">
-          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-          <p>"Pure Sri Lankan taste. Amma kiwwa market eke wada hodai kiyala!"</p>
-          <div class="reviewer"><div class="reviewer-avatar">D</div><span>Dilan, Galle</span></div>
-        </div>
-        <div class="review-card">
-          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-          <p>"Packaging is beautiful. Gifting to friends — they loved it!"</p>
-          <div class="reviewer"><div class="reviewer-avatar">S</div><span>Sachini, Matara</span></div>
-        </div>
-        <div class="review-card">
-          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-          <p>"No substitutes after trying this. RasaVansa is real flavor!"</p>
-          <div class="reviewer"><div class="reviewer-avatar">K</div><span>Kasun, Negombo</span></div>
-        </div>
+      <div class="hero-cta" data-reveal style="margin-top: 3rem;">
+        <a href="story.html" class="btn-secondary">Read the Full Story</a>
       </div>
     </div>
   </section>
 
-  <!-- ====== TRUST BADGES ====== -->
-  <section class="trust-section">
-    <div class="container">
-      <div class="trust-grid">
-        <div class="trust-item">
-          <div class="trust-icon-wrap"><i class="fa-solid fa-seedling"></i></div>
-          <h4>100% Organic</h4><p>No additives, no preservatives. Pure nature.</p>
+  <!-- ====== QUICK ORDER ====== -->
+  <section class="quick-order glass" style="margin: 4rem; border-radius: 60px; padding: 6rem 2rem;">
+    <div class="nav-container" style="display: block; text-align: center;">
+      <div class="hero-badge" data-reveal>
+        <span>Simple Ritual</span>
+      </div>
+      <h2 data-reveal style="font-family: var(--serif); font-size: 3.5rem; color: var(--lion-maroon-d); margin-bottom: 3rem;">Order in <span class="italic">3 Steps</span></h2>
+      
+      <div class="steps-row" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4rem;">
+        <div class="step-card" data-reveal>
+          <div class="logo-mark" style="margin: 0 auto 1.5rem;">1</div>
+          <h3 style="font-family: var(--serif); font-size: 1.5rem; margin-bottom: 1rem;">Select</h3>
+          <p style="font-size: 0.9rem; opacity: 0.7;">Browse our curated dynasty collection.</p>
         </div>
-        <div class="trust-item">
-          <div class="trust-icon-wrap"><i class="fa-solid fa-map-location-dot"></i></div>
-          <h4>Made in Sri Lanka</h4><p>Swadeshiya pride in every packet.</p>
+        <div class="step-card" data-reveal>
+          <div class="logo-mark" style="margin: 0 auto 1.5rem;">2</div>
+          <h3 style="font-family: var(--serif); font-size: 1.5rem; margin-bottom: 1rem;">Pack</h3>
+          <p style="font-size: 0.9rem; opacity: 0.7;">We seal for 12-month freshness ritual.</p>
         </div>
-        <div class="trust-item">
-          <div class="trust-icon-wrap"><i class="fa-solid fa-truck-fast"></i></div>
-          <h4>Island-wide Delivery</h4><p>Fast COD delivery anywhere in Lanka.</p>
-        </div>
-        <div class="trust-item">
-          <div class="trust-icon-wrap"><i class="fa-brands fa-whatsapp"></i></div>
-          <h4>WhatsApp Support</h4><p>Instant help, any time, any day.</p>
+        <div class="step-card" data-reveal>
+          <div class="logo-mark" style="margin: 0 auto 1.5rem;">3</div>
+          <h3 style="font-family: var(--serif); font-size: 1.5rem; margin-bottom: 1rem;">Enjoy</h3>
+          <p style="font-size: 0.9rem; opacity: 0.7;">Island-wide delivery to your doorstep.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ====== FOOTER ====== -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="index.html" class="logo footer-logo">
-            <div class="logo-mark"><i class="fa-solid fa-pepper-hot"></i></div>
-            <span class="logo-text">Rasa<strong>Vansa</strong></span>
-          </a>
-          <p>The Flavor Dynasty. Pure Ceylon spices, packed with love and tradition since centuries.</p>
-          <div class="social-links">
-            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-            <a href="https://wa.me/94771234567" aria-label="WhatsApp" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
-          </div>
+  <footer class="footer" style="background: var(--lion-maroon-d); color: var(--white); padding: 8rem 2rem 4rem;">
+    <div class="nav-container" style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 6rem;">
+      <div class="footer-brand">
+        <h2 style="font-family: var(--serif); font-size: 2.5rem; margin-bottom: 1.5rem;">RasaVansa</h2>
+        <p style="max-width: 400px; opacity: 0.6; line-height: 1.8;">The Flavor Dynasty. Pure Ceylon spices, packed with love and tradition since centuries. Rooted in tradition, delivered for the modern palate.</p>
+        <div class="social-links" style="display: flex; gap: 1.5rem; margin-top: 2rem;">
+          <a href="#" style="color: var(--golden-saffron); font-size: 1.5rem;"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" style="color: var(--golden-saffron); font-size: 1.5rem;"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" style="color: var(--golden-saffron); font-size: 1.5rem;"><i class="fa-brands fa-whatsapp"></i></a>
         </div>
-        <div class="footer-links-col">
-          <h4>Quick Links</h4>
-          <ul>
-            <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
-            <li><a href="shop.html"><i class="fa-solid fa-store"></i> Shop</a></li>
-            <li><a href="story.html"><i class="fa-solid fa-book-open"></i> Our Story</a></li>
-            <li><a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a></li>
-          </ul>
-        </div>
-        <div class="footer-links-col">
-          <h4>Our Spices</h4>
-          <ul>
-            <li><a href="shop.html"><i class="fa-solid fa-mortar-pestle"></i> Ceylon Turmeric</a></li>
-            <li><a href="shop.html"><i class="fa-solid fa-pepper-hot"></i> Red Devil Chili</a></li>
-            <li><a href="shop.html"><i class="fa-solid fa-circle-dot"></i> Black Pepper</a></li>
-            <li><a href="shop.html"><i class="fa-solid fa-box-open"></i> Spice Bundles</a></li>
-          </ul>
-        </div>
-        <div class="footer-contact">
-          <h4>Order via WhatsApp</h4>
-          <a href="https://wa.me/94771234567" class="whatsapp-btn" id="whatsapp-footer" target="_blank" rel="noopener">
-            <i class="fa-brands fa-whatsapp"></i> Chat with us
-          </a>
-          <div class="footer-certifications">
-            <span><i class="fa-solid fa-shield-halved"></i> Secure payment</span>
-            <span><i class="fa-solid fa-rotate-left"></i> Easy returns</span>
-          </div>
-          <p class="footer-closing">© 2026 RasaVansa. Made with <i class="fa-solid fa-heart" style="color:#e74c3c"></i> in Sri Lanka.</p>
-        </div>
+      </div>
+      <div class="footer-links">
+        <h4 style="text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.8rem; margin-bottom: 2rem;">Navigation</h4>
+        <ul style="display: flex; flex-direction: column; gap: 1rem; opacity: 0.8; font-size: 0.9rem; font-weight: 600;">
+          <li><a href="index.html">The Dynasty</a></li>
+          <li><a href="shop.html">Collection</a></li>
+          <li><a href="story.html">Origin</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4 style="text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.8rem; margin-bottom: 2rem;">Dynasty Support</h4>
+        <a href="https://wa.me/94771234567" class="btn-primary" style="background: var(--golden-saffron); color: var(--lion-maroon-d);">WhatsApp Order</a>
+        <p style="margin-top: 2rem; opacity: 0.5; font-size: 0.8rem;">© 2026 RasaVansa. <br> Made with Heritage in Sri Lanka.</p>
       </div>
     </div>
   </footer>
-
-  <a href="https://wa.me/94771234567" class="whatsapp-float" id="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp Order">
-    <i class="fa-brands fa-whatsapp"></i><span class="wa-pulse"></span>
-  </a>
-  <div class="cart-toast" id="cart-toast"><i class="fa-solid fa-circle-check"></i><span id="toast-msg"></span></div>
 
   <script src="script.js"></script>
 </body>
