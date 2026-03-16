@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout | RasaVansa Dynasty</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400;1,700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css"/>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+</head>
+<body class="checkout-page">
+
+  <!-- ====== NAVBAR ====== -->
+  <nav class="navbar scrolled">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <div class="logo-mark">R</div>
+        <span class="logo-text">RasaVansa</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Dynasty</a></li>
+        <li><a href="shop.html" class="nav-link">Collection</a></li>
+        <li><a href="story.html" class="nav-link">Origin</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="checkout-container" style="padding-top: 10rem; min-height: 100vh;">
+    <div class="nav-container">
+      <div class="checkout-grid" style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 6rem;">
+        
+        <!-- Order Review -->
+        <div class="order-review" data-reveal>
+          <header style="margin-bottom: 3rem;">
+            <span class="hero-badge">Your Dynasty Bag</span>
+            <h1 style="font-family: var(--serif); font-size: 3.5rem; color: var(--lion-maroon-d); margin-top: 1rem;">Review <span class="italic">Order</span></h1>
+          </header>
+          
+          <div id="cart-items-list" class="cart-items-list" style="display: flex; flex-direction: column; gap: 1.5rem;">
+            <!-- Items injected by JS -->
+          </div>
+          
+          <div class="cart-total-box" style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid oklch(20% 0.1 20 / 0.1);">
+            <div style="display: flex; justify-content: space-between; font-size: 1.2rem; margin-bottom: 1rem;">
+              <span>Subtotal</span>
+              <span id="subtotal">Rs. 0</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 1.2rem; margin-bottom: 1.5rem;">
+              <span>Delivery</span>
+              <span>Rs. 250</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 2rem; font-family: var(--serif); color: var(--lion-maroon-d); font-weight: 700;">
+              <span>Total</span>
+              <span id="grand-total">Rs. 0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shipping Form -->
+        <div class="shipping-section" data-reveal>
+          <div class="glass" style="padding: 3rem; border-radius: 40px;">
+            <h3 style="font-family: var(--serif); font-size: 1.8rem; margin-bottom: 2rem;">Delivery Details</h3>
+            <form id="checkout-form" class="checkout-form" style="display: flex; flex-direction: column; gap: 1.5rem;">
+              <div class="input-group">
+                <label>Full Name</label>
+                <input type="text" id="name" placeholder="Enter your name" required style="width: 100%; padding: 1rem; border-radius: 12px; border: 1px solid oklch(20% 0.1 20 / 0.1); background: transparent;">
+              </div>
+              <div class="input-group">
+                <label>Phone Number</label>
+                <input type="tel" id="phone" placeholder="+94 77 XXX XXXX" required style="width: 100%; padding: 1rem; border-radius: 12px; border: 1px solid oklch(20% 0.1 20 / 0.1); background: transparent;">
+              </div>
+              <div class="input-group">
+                <label>Complete Address</label>
+                <textarea id="address" placeholder="Lanka Street, Colombo..." required style="width: 100%; padding: 1rem; border-radius: 12px; border: 1px solid oklch(20% 0.1 20 / 0.1); background: transparent; min-height: 100px;"></textarea>
+              </div>
+              
+              <div style="margin-top: 1rem;">
+                <p style="font-size: 0.8rem; opacity: 0.6; margin-bottom: 1.5rem;">* Payment will be handled via Cash on Delivery or WhatsApp Confirmation.</p>
+                <button type="submit" class="btn-primary" style="width: 100%; background: var(--lion-maroon); color: var(--white);">Place My Order</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Simple Checkout JS
+    const $ = (s) => document.querySelector(s);
+    let cart = JSON.parse(localStorage.getItem('rasavansa_cart')) || [];
+    
+    function renderCheckoutItems() {
+      const list = $('#cart-items-list');
+      let subtotal = 0;
+      
+      list.innerHTML = cart.map((item, index) => {
+        subtotal += item.price * item.quantity;
+        return `
+          <div class="checkout-item" style="display: flex; justify-content: space-between; align-items: center; padding: 1.5rem; background: var(--surface-cream); border-radius: 20px;">
+            <div>
+              <h4 style="font-family: var(--serif); font-size: 1.4rem;">${item.name}</h4>
+              <span style="font-size: 0.9rem; opacity: 0.6;">Quantity: ${item.quantity}</span>
+            </div>
+            <div style="font-weight: 700; color: var(--lion-maroon);">Rs. ${item.price * item.quantity}</div>
+          </div>
+        `;
+      }).join('');
+      
+      $('#subtotal').innerText = `Rs. ${subtotal}`;
+      $('#grand-total').innerText = `Rs. ${subtotal + 250}`;
+    }
+
+    $('#checkout-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = $('#name').value;
+      const phone = $('#phone').value;
+      const address = $('#address').value;
+      const total = $('#grand-total').innerText;
+      
+      // WhatsApp message generation
+      const itemsText = cart.map(i => `${i.name} x${i.quantity}`).join(', ');
+      const msg = `RasaVansa Order Request:%0A%0AName: ${name}%0APhone: ${phone}%0AAddress: ${address}%0AItems: ${itemsText}%0ATotal: ${total}`;
+      
+      // Open WhatsApp
+      window.open(`https://wa.me/94771234567?text=${msg}`, '_blank');
+      
+      // Clear cart
+      localStorage.removeItem('rasavansa_cart');
+      alert("Dynasty Request Sent! Redirecting home...");
+      window.location.href = 'index.html';
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCheckoutItems();
+      
+      // Standard Lenis
+      const lenis = new Lenis();
+      function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+      requestAnimationFrame(raf);
+    });
+  </script>
+</body>
+</html>

@@ -110,33 +110,75 @@ function initNavbar() {
   });
 }
 
-// --- 06. CART LOGIC ---
+// --- 06. CART LOGIC (Persistence) ---
+let cart = JSON.parse(localStorage.getItem('rasavansa_cart')) || [];
+
 function initCart() {
-  let count = 0;
-  const countEl = $('.cart-count');
+  updateCartUI();
   
   $$('.add-to-cart').forEach(btn => {
-    btn.addEventListener('click', () => {
-      count++;
-      countEl.innerText = count;
-      
-      // Feedback
-      gsap.fromTo(countEl, { scale: 0.5 }, { scale: 1, duration: 0.4, ease: 'back.out(3)' });
-      
-      // Floating spice effect on click
-      createFloatingSpice(btn);
+    btn.addEventListener('click', (e) => {
+      const name = btn.dataset.name;
+      const price = parseInt(btn.dataset.price);
+      addToCart(name, price, e);
     });
   });
+
+  const cartBtn = $('#cart-btn');
+  if (cartBtn) {
+    cartBtn.addEventListener('click', toggleCartDrawer);
+  }
 }
 
-function createFloatingSpice(btn) {
+function addToCart(name, price, event) {
+  const existingItem = cart.find(item => item.name === name);
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    cart.push({ name, price, quantity: 1 });
+  }
+  
+  saveCart();
+  updateCartUI();
+  
+  // Feedback
+  const countEl = $('.cart-count');
+  gsap.fromTo(countEl, { scale: 0.5 }, { scale: 1, duration: 0.4, ease: 'back.out(3)' });
+  createFloatingSpice(event.clientX, event.clientY);
+}
+
+function saveCart() {
+  localStorage.setItem('rasavansa_cart', JSON.stringify(cart));
+}
+
+function updateCartUI() {
+  const countEl = $('.cart-count');
+  if (countEl) {
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    countEl.innerText = totalItems;
+  }
+}
+
+function toggleCartDrawer() {
+  // If we had a cart drawer UI, we'd toggle it here.
+  // For now, let's redirect to checkout if they click the bag, 
+  // or show a simple alert if it's empty.
+  if (cart.length === 0) {
+    alert("Your dynasty bag is empty!");
+  } else {
+    window.location.href = 'checkout.html';
+  }
+}
+
+function createFloatingSpice(x, y) {
   const spice = document.createElement('div');
   spice.innerHTML = '🌶️';
   spice.style.position = 'fixed';
-  spice.style.left = `${event.clientX}px`;
-  spice.style.top = `${event.clientY}px`;
+  spice.style.left = `${x}px`;
+  spice.style.top = `${y}px`;
   spice.style.pointerEvents = 'none';
   spice.style.zIndex = '9999';
+  spice.style.fontSize = '1.5rem';
   document.body.appendChild(spice);
 
   gsap.to(spice, {
