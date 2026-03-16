@@ -1230,6 +1230,44 @@ section { position: relative; z-index: 1; }
 }
 
 /* ============================================
+   PAGE TRANSITIONS & OVERLAYS
+   ============================================ */
+.transition-overlay {
+  position: fixed; inset: 0;
+  background: var(--lion-maroon);
+  z-index: 9999;
+  transform: translateY(100%);
+  pointer-events: none;
+}
+
+/* ============================================
+   REFINED SHOP & STORY TOKENS
+   ============================================ */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 2rem;
+  padding: 4rem 0;
+}
+.product-card {
+  grid-column: span 4;
+  /* Re-use plinth-card structure for consistency */
+}
+
+.timeline-item {
+  display: flex; gap: 4rem; margin-bottom: 6rem;
+  position: relative;
+}
+.tl-dot {
+  width: 60px; height: 60px; border-radius: 50%;
+  background: var(--golden-saffron);
+  color: var(--lion-maroon);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; flex-shrink: 0;
+  box-shadow: var(--shadow-md);
+}
+
+/* ============================================
    FINAL RESPONSIVE OVERRIDES
    ============================================ */
 @media (max-width: 992px) {
@@ -1237,13 +1275,17 @@ section { position: relative; z-index: 1; }
     grid-template-columns: 1fr !important;
     gap: 4rem !important;
   }
+  .products-grid { grid-template-columns: repeat(8, 1fr); }
+  .product-card { grid-column: span 4; }
 }
 
 @media (max-width: 768px) {
-  .collection-grid { grid-template-columns: 1fr; }
-  .bento-tall, .bento-wide, .plinth-card { grid-column: span 1; }
+  .collection-grid, .products-grid { grid-template-columns: 1fr; }
+  .bento-tall, .bento-wide, .plinth-card, .product-card { grid-column: span 1; }
   .steps-row { grid-template-columns: 1fr !important; gap: 2rem !important; }
   .footer .nav-container { grid-template-columns: 1fr !important; gap: 4rem !important; }
-  .navbar .nav-links { display: none; } /* Use hamburger on mobile */
+  .navbar .nav-links { display: none; }
+  .timeline-item { flex-direction: column; gap: 1.5rem; text-align: center; }
+  .tl-dot { margin: 0 auto; }
 }
 }

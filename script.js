@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMagneticButtons();
   initCart();
   initNavbar();
+  initPageTransitions();
 });
 
 // --- 02. SMOOTH SCROLL (LENIS) ---
@@ -82,14 +83,13 @@ function initGSAPAnimations() {
       ease: 'none'
     });
   });
-
-  // Horizontal Collection Scrub (Optional if needed)
 }
 
 // --- 04. MAGNETIC BUTTONS ---
 function initMagneticButtons() {
   $$('.magnetic-wrap').forEach(wrap => {
     const btn = wrap.querySelector('a, button');
+    if (!btn) return;
     wrap.addEventListener('mousemove', (e) => {
       const rect = wrap.getBoundingClientRect();
       const x = e.clientX - rect.left - rect.width / 2;
@@ -105,12 +105,13 @@ function initMagneticButtons() {
 // --- 05. NAVBAR DYNAMICS ---
 function initNavbar() {
   const nav = $('.navbar');
+  if (!nav) return;
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 50);
   });
 }
 
-// --- 06. CART LOGIC (Persistence) ---
+// --- 06. CART LOGIC (Persistence & Multi-page) ---
 let cart = JSON.parse(localStorage.getItem('rasavansa_cart')) || [];
 
 function initCart() {
@@ -143,7 +144,9 @@ function addToCart(name, price, event) {
   
   // Feedback
   const countEl = $('.cart-count');
-  gsap.fromTo(countEl, { scale: 0.5 }, { scale: 1, duration: 0.4, ease: 'back.out(3)' });
+  if (countEl) {
+    gsap.fromTo(countEl, { scale: 0.5 }, { scale: 1, duration: 0.4, ease: 'back.out(3)' });
+  }
   createFloatingSpice(event.clientX, event.clientY);
 }
 
@@ -160,14 +163,52 @@ function updateCartUI() {
 }
 
 function toggleCartDrawer() {
-  // If we had a cart drawer UI, we'd toggle it here.
-  // For now, let's redirect to checkout if they click the bag, 
-  // or show a simple alert if it's empty.
   if (cart.length === 0) {
     alert("Your dynasty bag is empty!");
   } else {
-    window.location.href = 'checkout.html';
+    transitionTo('checkout.html');
   }
+}
+
+// --- 07. PAGE TRANSITIONS (Lion Maroon Slide) ---
+function initPageTransitions() {
+  if (!$('.transition-overlay')) {
+    const overlay = document.createElement('div');
+    overlay.className = 'transition-overlay';
+    document.body.appendChild(overlay);
+  }
+
+  gsap.to('.transition-overlay', {
+    translateY: '-100%',
+    duration: 1,
+    ease: 'expo.inOut',
+    delay: 0.2
+  });
+
+  $$('a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (href && !href.startsWith('#') && !href.startsWith('http') && !href.includes('mailto') && !href.includes('wa.me')) {
+        const target = link.getAttribute('target');
+        if (target === '_blank') return;
+        
+        e.preventDefault();
+        transitionTo(href);
+      }
+    });
+  });
+}
+
+function transitionTo(url) {
+  gsap.set('.transition-overlay', { translateY: '100%' });
+  gsap.to('.transition-overlay', {
+    translateY: '0%',
+    duration: 0.8,
+    ease: 'expo.inOut',
+    onComplete: () => {
+      window.location.href = url;
+    }
+  });
 }
 
 function createFloatingSpice(x, y) {

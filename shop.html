@@ -1,207 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Shop premium Sri Lankan spices at RasaVansa - Ceylon Turmeric, Red Chili, Black Pepper and more."/>
-  <title>Shop | RasaVansa — The Spice Market</title>
+  <title>The Spice Market | RasaVansa Collection</title>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400;1,700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
   <link rel="stylesheet" href="style.css"/>
-</head>
-<body>
-  <canvas id="particle-canvas"></canvas>
 
-  <nav class="navbar scrolled" id="navbar">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+</head>
+<body class="shop-page">
+
+  <!-- ====== NAVBAR ====== -->
+  <nav class="navbar scrolled">
     <div class="nav-container">
       <a href="index.html" class="logo">
-        <div class="logo-mark"><i class="fa-solid fa-pepper-hot"></i></div>
-        <span class="logo-text">Rasa<strong>Vansa</strong></span>
+        <div class="logo-mark">R</div>
+        <span class="logo-text">RasaVansa</span>
       </a>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="index.html" class="nav-link">Home</a></li>
-        <li><a href="shop.html" class="nav-link active">Shop</a></li>
-        <li><a href="story.html" class="nav-link">Our Story</a></li>
-        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Dynasty</a></li>
+        <li><a href="shop.html" class="nav-link active">Collection</a></li>
+        <li><a href="story.html" class="nav-link">Origin</a></li>
       </ul>
       <div class="nav-actions">
-        <a href="contact.html" class="btn btn-ghost nav-order-btn"><i class="fa-brands fa-whatsapp"></i> Order Now</a>
-        <button class="cart-btn" id="cart-btn" aria-label="View Cart">
+        <button class="cart-btn" id="cart-btn">
           <i class="fa-solid fa-bag-shopping"></i>
-          <span class="cart-count" id="cart-count">0</span>
+          <span class="cart-count">0</span>
         </button>
-        <button class="hamburger" id="hamburger" aria-label="Open Menu"><span></span><span></span><span></span></button>
       </div>
     </div>
   </nav>
 
-  <!-- PAGE HERO -->
-  <div class="page-hero">
-    <div class="container">
-      <div class="eyebrow-pill"><i class="fa-solid fa-store"></i> Premium Selection</div>
-      <h1>The Spice Market</h1>
-      <p>Hand-picked, sun-dried, and packed with pure Ceylon goodness.</p>
+  <main style="padding-top: 8rem;">
+    <!-- Shop Header -->
+    <header class="collection-header" style="text-align: center; max-width: 800px; margin: 0 auto 4rem;" data-reveal>
+      <span class="hero-badge">The Spice Market</span>
+      <h1 style="font-family: var(--serif); font-size: 4rem; color: var(--lion-maroon-d); margin: 1rem 0;">The Royal <span class="italic">Market</span></h1>
+      <p>Hand-picked, sun-dried, and hand-packed. Every grain carries the rhythm of the mountain rain and the warmth of the island sun.</p>
+    </header>
+
+    <!-- Filters (Simulated) -->
+    <div class="nav-container" style="margin-bottom: 2rem;" data-reveal>
+       <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+         <button class="btn-secondary" style="padding: 0.6rem 1.5rem;">All</button>
+         <button class="btn-secondary" style="padding: 0.6rem 1.5rem; opacity: 0.5;">Turmeric</button>
+         <button class="btn-secondary" style="padding: 0.6rem 1.5rem; opacity: 0.5;">Chili</button>
+         <button class="btn-secondary" style="padding: 0.6rem 1.5rem; opacity: 0.5;">Pepper</button>
+       </div>
     </div>
-  </div>
 
-  <section class="shop-layout">
-    <div class="container">
-      <!-- FILTERS -->
-      <div class="shop-filters">
-        <span class="filter-label"><i class="fa-solid fa-sliders"></i> Filter:</span>
-        <button class="filter-btn active" data-filter="all" id="filter-all"><i class="fa-solid fa-border-all"></i> All</button>
-        <button class="filter-btn" data-filter="turmeric" id="filter-turmeric"><i class="fa-solid fa-mortar-pestle"></i> Turmeric</button>
-        <button class="filter-btn" data-filter="chili" id="filter-chili"><i class="fa-solid fa-pepper-hot"></i> Chili</button>
-        <button class="filter-btn" data-filter="pepper" id="filter-pepper"><i class="fa-solid fa-circle-dot"></i> Pepper</button>
-        <button class="filter-btn" data-filter="bundle" id="filter-bundle"><i class="fa-solid fa-box-open"></i> Bundles</button>
-        <button class="filter-btn" data-filter="mild" id="filter-mild"><i class="fa-solid fa-leaf"></i> Mild</button>
-        <button class="filter-btn" data-filter="hot" id="filter-hot"><i class="fa-solid fa-fire"></i> Hot</button>
-      </div>
-
-      <!-- PRODUCTS GRID -->
+    <!-- Products Grid -->
+    <section class="nav-container">
       <div class="products-grid">
-
-        <div class="product-card" data-category="turmeric" data-heat="mild" data-name="Ceylon Turmeric Gold" data-price="290">
-          <div class="card-tag"><i class="fa-solid fa-trophy"></i> Best Seller</div>
-          <div class="pic-img-wrap" style="height:200px">
-            <img src="images/turmeric.png" alt="Ceylon Turmeric Gold" loading="lazy"/>
-            <div class="pic-img-overlay"></div>
+        
+        <!-- Turmeric -->
+        <div class="plinth-card product-card" data-reveal>
+          <div class="plinth-img-wrap">
+            <img src="images/turmeric.png" alt="Ceylon Turmeric Gold"/>
           </div>
-          <div class="product-body">
-            <h3>Ceylon Turmeric Gold</h3>
-            <p>High-curcumin, sun-dried, hand-ground. Perfect for rice, curries and health drinks.</p>
-            <div class="heat-row">
-              <span class="heat-label"><i class="fa-solid fa-fire-flame-curved"></i> Heat</span>
-              <div class="heat-pips"><span class="pip on"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span></div>
-              <span class="heat-text">Mild</span>
-            </div>
-          </div>
-          <div class="product-footer">
-            <div class="price-group"><span class="price">Rs. 290</span><span class="unit">/ 100g</span></div>
-            <button class="btn btn-primary add-to-cart" data-name="Ceylon Turmeric Gold" data-price="290"><i class="fa-solid fa-bag-shopping"></i> Add</button>
+          <div class="plinth-meta">
+            <span>Sun-Dried Gold</span>
+            <h3>Kaha</h3>
+            <p>Sun-dried stone-ground turmeric with high curcumin content.</p>
+            <span class="plinth-price">Rs. 290</span>
+            <button class="add-to-cart" data-name="Ceylon Turmeric Gold" data-price="290">Add to Bag</button>
           </div>
         </div>
 
-        <div class="product-card" data-category="chili" data-heat="hot" data-name="Red Devil Chili" data-price="320">
-          <div class="card-tag chili-tag"><i class="fa-solid fa-fire"></i> Hot Pick</div>
-          <div class="pic-img-wrap" style="height:200px">
-            <img src="images/chili.png" alt="Red Devil Chili" loading="lazy"/>
-            <div class="pic-img-overlay"></div>
+        <!-- Chili -->
+        <div class="plinth-card product-card" data-reveal>
+          <div class="plinth-img-wrap">
+            <img src="images/chili.png" alt="Red Devil Chili"/>
           </div>
-          <div class="product-body">
-            <h3>Red Devil Chili</h3>
-            <p>Sun-roasted Sri Lankan red chili powder. Intense heat and deep colour for authentic dishes.</p>
-            <div class="heat-row">
-              <span class="heat-label"><i class="fa-solid fa-fire-flame-curved"></i> Heat</span>
-              <div class="heat-pips"><span class="pip on"></span><span class="pip on"></span><span class="pip on"></span><span class="pip on"></span><span class="pip"></span></div>
-              <span class="heat-text">Hot</span>
-            </div>
-          </div>
-          <div class="product-footer">
-            <div class="price-group"><span class="price">Rs. 320</span><span class="unit">/ 100g</span></div>
-            <button class="btn btn-primary add-to-cart" data-name="Red Devil Chili" data-price="320"><i class="fa-solid fa-bag-shopping"></i> Add</button>
+          <div class="plinth-meta">
+            <span>Crimson Heat</span>
+            <h3>Miris</h3>
+            <p>Slow-smoked over local cinnamon wood for a deep, royal bite.</p>
+            <span class="plinth-price">Rs. 320</span>
+            <button class="add-to-cart" data-name="Red Devil Chili" data-price="320">Add to Bag</button>
           </div>
         </div>
 
-        <div class="product-card" data-category="pepper" data-heat="mild" data-name="Ceylon Black Pepper" data-price="450">
-          <div class="card-tag organic-tag"><i class="fa-solid fa-leaf"></i> Organic</div>
-          <div class="pic-img-wrap" style="height:200px">
-            <img src="images/pepper.png" alt="Ceylon Black Pepper" loading="lazy"/>
-            <div class="pic-img-overlay"></div>
+        <!-- Pepper -->
+        <div class="plinth-card product-card" data-reveal>
+          <div class="plinth-img-wrap">
+            <img src="images/pepper.png" alt="Black Pearl Pepper"/>
           </div>
-          <div class="product-body">
-            <h3>Ceylon Black Pepper</h3>
-            <p>Bold, aromatic whole peppercorns from Matale highlands — freshly grind for best results.</p>
-            <div class="heat-row">
-              <span class="heat-label"><i class="fa-solid fa-fire-flame-curved"></i> Heat</span>
-              <div class="heat-pips"><span class="pip on"></span><span class="pip on"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span></div>
-              <span class="heat-text">Medium</span>
-            </div>
-          </div>
-          <div class="product-footer">
-            <div class="price-group"><span class="price">Rs. 450</span><span class="unit">/ 100g</span></div>
-            <button class="btn btn-primary add-to-cart" data-name="Ceylon Black Pepper" data-price="450"><i class="fa-solid fa-bag-shopping"></i> Add</button>
+          <div class="plinth-meta">
+            <span>The King of Spices</span>
+            <h3>Gambiris</h3>
+            <p>Hand-picked peppercorns offering a sharp, sophisticated citrus peak.</p>
+            <span class="plinth-price">Rs. 450</span>
+            <button class="add-to-cart" data-name="Black Pearl Pepper" data-price="450">Add to Bag</button>
           </div>
         </div>
 
-        <div class="product-card" data-category="chili" data-heat="hot" data-name="Ghost Pepper Extreme" data-price="580">
-          <div class="card-tag chili-tag"><i class="fa-solid fa-skull"></i> Extreme</div>
-          <div class="product-img">
-            <div class="product-img-inner extreme-img"><i class="fa-solid fa-bolt-lightning"></i></div>
-          </div>
-          <div class="product-body">
-            <h3>Ghost Pepper Extreme</h3>
-            <p>For daring spice lovers only. Bhut jolokia extract — use a tiny pinch!</p>
-            <div class="heat-row">
-              <span class="heat-label"><i class="fa-solid fa-fire-flame-curved"></i> Heat</span>
-              <div class="heat-pips"><span class="pip on"></span><span class="pip on"></span><span class="pip on"></span><span class="pip on"></span><span class="pip on"></span></div>
-              <span class="heat-text">Extreme</span>
+        <!-- Ghost Pepper -->
+        <div class="plinth-card product-card" data-reveal>
+          <div class="plinth-img-wrap">
+            <div style="width: 100%; height: 100%; background: var(--lion-maroon-d); display: flex; align-items: center; justify-content: center; color: var(--golden-saffron); font-size: 4rem;">
+              <i class="fa-solid fa-fire"></i>
             </div>
           </div>
-          <div class="product-footer">
-            <div class="price-group"><span class="price">Rs. 580</span><span class="unit">/ 50g</span></div>
-            <button class="btn btn-primary add-to-cart" data-name="Ghost Pepper Extreme" data-price="580"><i class="fa-solid fa-bag-shopping"></i> Add</button>
+          <div class="plinth-meta">
+            <span>Extreme Heat</span>
+            <h3>Ghost Pepper</h3>
+            <p>For daring spice lovers only. Pure Bhut Jolokia intensity.</p>
+            <span class="plinth-price">Rs. 580</span>
+            <button class="add-to-cart" data-name="Ghost Pepper Extreme" data-price="580">Add to Bag</button>
           </div>
         </div>
 
-        <div class="product-card" data-category="bundle" data-heat="mild" data-name="Starter Trio Bundle" data-price="950">
-          <div class="card-tag" style="background:var(--saffron);color:var(--maroon-d)"><i class="fa-solid fa-tags"></i> Save Rs. 110</div>
-          <div class="product-img">
-            <div class="product-img-inner bundle-img"><i class="fa-solid fa-box-open"></i></div>
-          </div>
-          <div class="product-body">
-            <h3>Starter Trio Bundle</h3>
-            <p>Get all 3 bestsellers — Turmeric, Chili & Pepper — at a special bundle price.</p>
-            <div class="heat-row">
-              <span class="heat-label"><i class="fa-solid fa-fire-flame-curved"></i> Heat</span>
-              <div class="heat-pips"><span class="pip on"></span><span class="pip on"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span></div>
-              <span class="heat-text">Mixed</span>
+        <!-- Bundle -->
+        <div class="plinth-card product-card" data-reveal>
+          <div class="plinth-img-wrap">
+            <div style="width: 100%; height: 100%; background: var(--golden-saffron); display: flex; align-items: center; justify-content: center; color: var(--lion-maroon-d); font-size: 4rem;">
+              <i class="fa-solid fa-box-open"></i>
             </div>
           </div>
-          <div class="product-footer">
-            <div class="price-group"><span class="price">Rs. 950</span><span class="unit">/ bundle</span></div>
-            <button class="btn btn-primary add-to-cart" data-name="Starter Trio Bundle" data-price="950"><i class="fa-solid fa-bag-shopping"></i> Add</button>
+          <div class="plinth-meta">
+            <span>The Trio Pack</span>
+            <h3>Dynasty Trio</h3>
+            <p>Our three bestsellers in a premium heritage gift box.</p>
+            <span class="plinth-price">Rs. 950</span>
+            <button class="add-to-cart" data-name="Starter Trio Bundle" data-price="950">Add to Bag</button>
           </div>
         </div>
 
-        <div class="product-card" data-category="turmeric" data-heat="mild" data-name="Golden Milk Mix" data-price="380">
-          <div class="card-tag organic-tag"><i class="fa-solid fa-heart-pulse"></i> Wellness</div>
-          <div class="product-img">
-            <div class="product-img-inner wellness-img"><i class="fa-solid fa-mug-hot"></i></div>
-          </div>
-          <div class="product-body">
-            <h3>Golden Milk Mix</h3>
-            <p>Turmeric, ginger & cardamom blend for your daily wellness latte. Immunity powerhouse.</p>
-            <div class="heat-row">
-              <span class="heat-label"><i class="fa-solid fa-fire-flame-curved"></i> Heat</span>
-              <div class="heat-pips"><span class="pip on"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span></div>
-              <span class="heat-text">Mild</span>
+        <!-- Wellness -->
+        <div class="plinth-card product-card" data-reveal>
+          <div class="plinth-img-wrap">
+            <div style="width: 100%; height: 100%; background: oklch(50% 0.1 150); display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 4rem;">
+              <i class="fa-solid fa-heart-pulse"></i>
             </div>
           </div>
-          <div class="product-footer">
-            <div class="price-group"><span class="price">Rs. 380</span><span class="unit">/ 80g</span></div>
-            <button class="btn btn-primary add-to-cart" data-name="Golden Milk Mix" data-price="380"><i class="fa-solid fa-bag-shopping"></i> Add</button>
+          <div class="plinth-meta">
+            <span>Natural Rituals</span>
+            <h3>Wellness Mix</h3>
+            <p>Turmeric, ginger and secret herbs for your daily resilience.</p>
+            <span class="plinth-price">Rs. 380</span>
+            <button class="add-to-cart" data-name="Golden Milk Mix" data-price="380">Add to Bag</button>
           </div>
         </div>
 
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <a href="https://wa.me/94771234567" class="whatsapp-float" id="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp Order">
-    <i class="fa-brands fa-whatsapp"></i><span class="wa-pulse"></span>
-  </a>
-  <div class="cart-toast" id="cart-toast"><i class="fa-solid fa-circle-check"></i><span id="toast-msg"></span></div>
-
-  <footer class="footer">
-    <div class="container" style="text-align:center;padding:2rem 0">
-      <a href="index.html" class="logo footer-logo" style="justify-content:center;margin-bottom:.8rem">
-        <div class="logo-mark"><i class="fa-solid fa-pepper-hot"></i></div>
-        <span class="logo-text">Rasa<strong>Vansa</strong></span>
-      </a>
-      <p style="color:rgba(255,255,255,.35);font-size:.82rem">© 2026 RasaVansa. The Sri Lankan Spice Dynasty.</p>
+  <footer class="footer" style="background: var(--lion-maroon-d); color: var(--white); padding: 8rem 2rem 4rem; margin-top: 6rem;">
+    <div class="nav-container" style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 6rem;">
+       <div>
+         <h2 style="font-family: var(--serif); font-size: 2.5rem; margin-bottom: 1.5rem;">RasaVansa</h2>
+         <p style="opacity: 0.6;">Rooted in heritage, delivered for the modern palate.</p>
+       </div>
+       <div>
+         <h4 style="text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem;">Links</h4>
+         <ul style="display: flex; flex-direction: column; gap: 0.8rem;">
+           <li><a href="index.html">Dynasty</a></li>
+           <li><a href="shop.html">Collection</a></li>
+           <li><a href="story.html">Origin</a></li>
+         </ul>
+       </div>
+       <div>
+         <h4 style="text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem;">Support</h4>
+         <a href="#" class="btn-primary" style="background: var(--golden-saffron); color: var(--lion-maroon-d);">WhatsApp Order</a>
+       </div>
     </div>
   </footer>
 
